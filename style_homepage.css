@@ -1,16 +1,73 @@
-nav  a{ /* tous les liens a à l'intérieur de la balise nav */
-    float: middle; /* effet flottant */
-    text-decoration: none; /* pas d'héritage avec effet souligné */
-    color: #ffffff; /* couleur du texte */
-    background: #000000; /* couleur de fond */
-    height: 36px; /* hauteur */
-    line-height: 33px; /* interligne */
+@font-face {
+    font-family: 'neuropol';
+    src: url('/assets/polices/neuropol.woff2') format('woff2'),
+}
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color: #202020;
+}
+nav.menu .link-container img.home-picture {
     
-    padding: 0 10px; /* marges intérieur */
-    font-family: sans-serif; /* police d'écriture */
-    font-size: 13px; /* taille du texte */
-    transition: .5s; /* temps de transition lors du hover : une demi seconde */
+    width: 200px;
+}
+nav.menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #000000;
+    padding: 0 20px; /* Ajoute un peu de padding pour ne pas coller les éléments aux bords */
+}
+
+.menu .link-container {
+    display: flex;
+    list-style: none; /* Enlève les puces des listes */
+    padding: 0; /* Enlève le padding par défaut des listes */
+    margin: 0; /* Enlève la marge par défaut des listes */
+}
+
+.menu .link-container li {
+    padding: 0 10px; /* Espacement entre les liens */
+}
+
+nav.menu a {
+    text-decoration: none;
+    color: #ffffff;
+    background: #000000;
+    height: 50px;
+    line-height: 50px;
+    padding: 0 20px;
+    font-family: neuropol;
+    font-size: 20px;
+    transition: .5s;
+    display: flex;
+    align-items: center;
+}
+
+nav.menu a:hover {
+    background: #EF7A2D;
+
+}
+
+.menu .account {
+    display: flex;
+    align-items: center;
+}
+p.welcome {
+    color: #ffffff;
+    font-size: 20px;
+    font-family: neuropol;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    text-align: center;
+    opacity: 0; /* Commence complètement transparent */
+    animation: fadeIn 0.5s ease-in forwards; /* Animation nommée "fadeIn" */
+  }
+  
+  /* Keyframes pour l'animation "fadeIn" */
+  @keyframes fadeIn {
+    to {
+      opacity: 1; /* Termine complètement opaque */
     }
-    nav  a:hover{ /* tous liens lors du survol dans la balise nav */
-    background: #EF7A2D; /* couleur de fond */
-    }
+  }
