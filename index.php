@@ -10,10 +10,13 @@
 <body>
     <header>  
     <?php
+    include 'navbar.php';
+    include 'db_connector.php';
+
     // Récupérer le paramètre "page" de l'URL
     $page = isset($_GET['page']) ? $_GET['page'] : 'accueil';
     // Inclure la barre de navigation
-    include 'navbar.php';
+    
     ?>
 
     <!-- Contenu spécifique à chaque page -->
@@ -33,7 +36,33 @@
         Sur ce site, vous retrouverez toutes nos meilleure occasions disponibles à la vente, obtenues de façon bien evidamment légale 🙂</p>  
         <p><?php echo date("H:i:s");?></p> 
     <?php elseif ($page === 'itemlist') : ?>
-        <p class="itemlist">Corps de texte de la liste de produits</p> 
+        <?php $query = "SELECT * FROM items";
+        $result = mysqli_query($conn, $query);
+
+        if (mysqli_num_rows($result) > 0) {
+            // Afficher les données dans un tableau
+            echo "<table class='itemlist'>";
+            echo "<tr><th>ID</th><th>Marque</th><th>Modèle</th><th>Description</th><th>État</th><th>Kilométrage</th><th>Date de création</th><th>Année</th></tr>";
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr>";
+                echo "<td>" . $row['id'] . "</td>";
+                echo "<td>" . $row['make'] . "</td>";
+                echo "<td>" . $row['model'] . "</td>";
+                echo "<td>" . $row['description'] . "</td>";
+                echo "<td>" . $row['condition'] . "</td>";
+                echo "<td>" . $row['mileage'] . "</td>";
+                echo "<td>" . $row['date_of_creation'] . "</td>";
+                echo "<td>" . $row['year'] . "</td>";
+                echo "</tr>";
+            }
+            echo "</table>";
+        } else {
+            echo "Aucune donnée trouvée dans la table 'items'.";
+        }
+
+        mysqli_close($conn);
+        ?>
+
     <?php elseif ($page === 'basket') : ?>
         <p class="basket">Corps de texte du panier</p>
     <?php elseif ($page === 'about-us') : ?>
