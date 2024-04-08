@@ -9,20 +9,26 @@
 </head>
 <body>
     <header>  
-        <nav class="menu">
-            <ul class="link-container">
-                <a href="https://projetr209.nekocorp.fr/index.html"><img src="assets/imgs/logo.png" class="home-picture" alt="Logo"></a>
-                <li><a href="">Accueil</a></li>
-                <li><a href="">Nos véhicules</a></li>
-                <li><a href="">Panier</a></li>
-                <li><a href="">A propos</a></li>
-            </ul>
-            <div class="account">
-                <a href="">Mon compte</a>
-            </div>
-        </nav>
+    <?php
+    // Récupérer le paramètre "page" de l'URL
+    $page = isset($_GET['page']) ? $_GET['page'] : 'accueil';
+    // Inclure la barre de navigation
+    include 'navbar.php';
+    ?>
+
+    <!-- Contenu spécifique à chaque page -->
+    <?php if ($page === 'accueil') : ?>
+        <p class="welcome">Bienvenue sur Auto Télécom, le site de revente de voiture de l'IUT de Mont de Marsan.<br>
+        Sur ce site, vous retrouverez toutes nos meilleure occasions disponibles à la vente, obtenues de façon bien evidamment légale 🙂</p>  
+        <p><?php echo date("H:i:s");?></p> 
+    <?php elseif ($page === 'itemlist') : ?>
+        <p class="itemlist">Corps de texte de la liste de produits</p> 
+    <?php elseif ($page === 'panier') : ?>
+        <p class="panier">Corps de texte du panier</p>
+    <?php elseif ($page === 'a-propos') : ?>
+        <p class="a-propos">Corps de texte du a propos</p>
+    <?php endif; ?>
+
     </header>
-    <p class="welcome">Bienvenue sur Auto Télécom, le site de revente de voiture de l'IUT de Mont de Marsan.<br>
-    Sur ce site, vous retrouverez toutes nos meilleure occasions disponibles à la vente, obtenues de façon bien evidamment légale 🙂</p>  
 </body>
 </html>

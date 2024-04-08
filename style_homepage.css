@@ -11,7 +11,7 @@ nav.menu .link-container img.home-picture {
     
     width: 200px;
 }
-nav.menu {
+nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -71,3 +71,36 @@ p.welcome {
       opacity: 1; /* Termine complètement opaque */
     }
   }
+p.itemlist { 
+    color: #ffffff;
+    font-size: 20px;
+    font-family: neuropol;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    text-align: center;
+    opacity: 0; /* Commence complètement transparent */
+    animation: fadeIn 0.5s ease-in forwards; /* Animation nommée "fadeIn" */
+}
+p.panier { 
+    color: #ffffff;
+    font-size: 20px;
+    font-family: neuropol;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    text-align: center;
+    opacity: 0; /* Commence complètement transparent */
+    animation: fadeIn 0.5s ease-in forwards; /* Animation nommée "fadeIn" */
+}
+p.a-propos { 
+    color: #ffffff;
+    font-size: 20px;
+    font-family: neuropol;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    text-align: center;
+    opacity: 0; /* Commence complètement transparent */
+    animation: fadeIn 0.5s ease-in forwards; /* Animation nommée "fadeIn" */
+}
