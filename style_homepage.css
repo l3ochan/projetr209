@@ -82,7 +82,7 @@ p.itemlist {
     opacity: 0; /* Commence complètement transparent */
     animation: fadeIn 0.5s ease-in forwards; /* Animation nommée "fadeIn" */
 }
-p.panier { 
+p.basket { 
     color: #ffffff;
     font-size: 20px;
     font-family: neuropol;
@@ -93,7 +93,7 @@ p.panier {
     opacity: 0; /* Commence complètement transparent */
     animation: fadeIn 0.5s ease-in forwards; /* Animation nommée "fadeIn" */
 }
-p.a-propos { 
+p.about-us { 
     color: #ffffff;
     font-size: 20px;
     font-family: neuropol;
@@ -102,5 +102,34 @@ p.a-propos {
     align-items: center; 
     text-align: center;
     opacity: 0; /* Commence complètement transparent */
+    animation: fadeIn 0.5s ease-in forwards; /* Animation nommée "fadeIn" */
+}
+p.login { 
+    color: #ffffff;
+    font-size: 20px;
+    font-family: neuropol;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    text-align: center;
+    opacity: 0; /* Commence complètement transparent */
+    animation: fadeIn 0.5s ease-in forwards; /* Animation nommée "fadeIn" */
+}
+div.error404 h1 { 
+    color: #ffffff;
+    font-size: 50px;
+    font-family: neuropol;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    text-align: center;
+    opacity: 0; /* Commence complètement transparent */
+    animation: fadeIn 0.5s ease-in forwards; /* Animation nommée "fadeIn" */
+}
+div.error404 img { 
+    width: 200px;
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
     animation: fadeIn 0.5s ease-in forwards; /* Animation nommée "fadeIn" */
 }
