@@ -12,6 +12,6 @@
                 <li><a href="index.php?page=a-propos">A propos</a></li>
             </ul>
             <div class="account">
-                <a href="">Se connecter</a>
+                <a href="index.php?page=login">Se connecter</a>
             </div>
         </nav>

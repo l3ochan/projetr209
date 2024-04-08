@@ -27,7 +27,10 @@
         <p class="panier">Corps de texte du panier</p>
     <?php elseif ($page === 'a-propos') : ?>
         <p class="a-propos">Corps de texte du a propos</p>
+    <?php elseif ($page === 'login') : ?>
+        <p class="login">Corps de texte de la page de login</p>
     <?php endif; ?>
+
 
     </header>
 </body>
