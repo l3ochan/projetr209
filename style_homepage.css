@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'neuropol';
-    src: url('/assets/polices/neuropol.woff2') format('woff2'),
+    src: url('/assets/polices/neuropol.woff2') format('woff2'), /* On prend la police de l'IUT mdr */
 }
 html, body {
     margin: 0;
@@ -8,9 +8,9 @@ html, body {
     background-color: #202020;
 }
 nav.menu .link-container img.home-picture {
-    
     width: 200px;
 }
+
 nav {
     display: flex;
     justify-content: space-between;
@@ -115,6 +115,9 @@ p.login {
     opacity: 0; /* Commence complètement transparent */
     animation: fadeIn 0.5s ease-in forwards; /* Animation nommée "fadeIn" */
 }
+div.error404 {
+    text-align: center; /* Centre le contenu horizontalement */
+}
 div.error404 h1 { 
     color: #ffffff;
     font-size: 50px;
@@ -122,14 +125,12 @@ div.error404 h1 {
     display: flex;
     justify-content: center; 
     align-items: center; 
-    text-align: center;
     opacity: 0; /* Commence complètement transparent */
     animation: fadeIn 0.5s ease-in forwards; /* Animation nommée "fadeIn" */
 }
-div.error404 img { 
-    width: 200px;
-    display: flex;
-    align-items: center; 
-    justify-content: center; 
-    animation: fadeIn 0.5s ease-in forwards; /* Animation nommée "fadeIn" */
+div.error404 img {
+    width: 350px;
+    height: 350px;
+    margin: auto; /* Centre l'image horizontalement */
 }
+
