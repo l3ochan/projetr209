@@ -65,15 +65,21 @@ p.welcome {
     animation: fadeIn 0.5s ease-in forwards; /* Animation nommée "fadeIn" */
   }
   
-  /* Keyframes pour l'animation "fadeIn" */
+
   @keyframes fadeIn {
     to {
-      opacity: 1; /* Termine complètement opaque */
+      opacity: 1; 
     }
   }
   body {
     margin: 0;
     padding: 0;
+}
+.separator {
+    border-bottom: 1px solid #6b6b6b; 
+    margin: 20px auto; 
+    max-width: 80%;
+
 }
 h1.vehicle-list { 
     color: #ffffff;
@@ -89,47 +95,50 @@ h1.vehicle-list {
 .vehicle-container {
     margin: 10px;
     padding: 10px;
-    width: calc(20% - 20px); /* Largeur de chaque conteneur (20% de la largeur de l'écran moins la marge) */
-    margin-right: 20px; /* Marge à droite pour séparer les véhicules */
-    float: left; /* Permet aux conteneurs de flotter côte à côte */
-    margin-bottom: 20px; /* Marge en bas pour séparer les véhicules */
-    border-radius: 12px; /* Bords arrondis */
-    overflow: hidden; /* Pour masquer le contenu débordant */
-    font-family: 'neuropol'; /* Utilisation de la même police */
-    opacity: 0; /* Commence complètement transparent */
-    animation: fadeIn 0.5s ease-in forwards; /* Animation nommée "fadeIn" */
+    width: calc(20% - 20px); 
+    margin-right: 20px; 
+    float: left;
+    margin-bottom: 20px;
+    border-radius: 12px; 
+    overflow: hidden;
+    font-family: 'neuropol'; 
+    transition: transform 0.3s ease;
+    opacity: 0; 
+    animation: fadeIn 0.5s ease-in forwards; 
 }
-
+.vehicle-container:hover {
+    transform: scale(1.05); /* Grossit de 10% lorsque survolé */
+}
 .vehicle {
-    border: none; /* Supprimer la bordure par défaut */
-    padding: 20px; /* Espacement à l'intérieur du conteneur */
-    background-color: #3a3a3a; /* Couleur de fond du conteneur */
-    border-radius: 12px; /* Bords arrondis */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre douce */
+    border: none; 
+    padding: 20px; 
+    background-color: #3a3a3a; 
+    border-radius: 12px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
 }
 
 .vehicle img {
-    max-width: 100%; /* Pour s'assurer que l'image ne dépasse pas la largeur du conteneur */
-    border-radius: 12px; /* Bords arrondis */
+    max-width: 100%; 
+    border-radius: 12px; 
 }
 
 .make-model {
     font-size: 20px;
     font-weight: bold;
     
-    color: #ffffff; /* Couleur du texte */
+    color: #ffffff; 
 }
 
 .price {
     font-size: 22px;
-    color: #EF7A2D; /* Couleur du prix */
-     /* Marge en haut du prix */
+    color: #EF7A2D; 
+     
 }
 
 .date-mileage {
     font-size: 14px;
-    color: #666; /* Couleur de la date et du kilométrage */
-    margin-top: 8px; /* Marge en haut de la date et du kilométrage */
+    color: #666; 
+    margin-top: 8px; 
 }
 
 a.vehicle-link {
