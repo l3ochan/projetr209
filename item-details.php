@@ -36,6 +36,10 @@ include 'config/db_connector.php';
 
     <div class="gallery">
 <?php
+
+        error_reporting(E_ALL);
+        ini_set('display_errors', 1);
+
         // Chemin du répertoire contenant les images
         $directory = "data/ads_imgs/$item_id";
 
@@ -53,6 +57,8 @@ include 'config/db_connector.php';
         <span class="close">&times;</span>
         <img class="modal-content" id="img01">
     </div>
+
+    <script src="scripts.js"></script>
 
 </body>
 </html>
