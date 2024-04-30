@@ -76,33 +76,37 @@ p.welcome {
     padding: 0;
 }
 
+/* CSS pour le conteneur principal des véhicules */
 .vehicle-container {
-    max-width: 1200px;
-    margin: 0 auto;
+    border: 1px solid #ccc;
     padding: 20px;
+    margin-bottom: 20px;
+    width: calc(33.33% - 40px);
+    margin-right: 20px;
+    display: inline-block; /* Afficher les conteneurs de véhicule sur la même ligne */
+    box-sizing: border-box;
 }
 
+
+
+/* CSS pour chaque conteneur de véhicule */
 .container {
     font-family: 'neuropol';
     background-color: #282828;
     border-radius: 8px;
     overflow: hidden;
     margin-bottom: 20px;
-    float: left;
-    width: calc(33.33% - 40px);
-    margin-right: 20px;
+    width: calc(33.33% - 20px);
     box-sizing: border-box;
 }
 
-.vehicle {
-    border-bottom: 1px solid #252525;
-}
-
+/* CSS pour l'image de chaque véhicule */
 .vehicle img {
-    height: 250px;
+    height: auto;
     width: 100%;
     border-radius: 8px 8px 0 0;
 }
+
 
 a.vehicle-link {
     text-decoration: none;
