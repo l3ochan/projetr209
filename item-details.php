@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
 </head>
 <body>
-    <div class="container">
+    <div class="item-details">
 <?php
 include 'config/db_connector.php';
 

@@ -76,51 +76,59 @@ p.welcome {
     padding: 0;
 }
 
-.container {
-    max-width: 250px;
-    font-family: 'neuropol';
-    margin: 20px auto;
+.vehicle-container {
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 20px;
+}
+
+.container {
+    font-family: 'neuropol';
     background-color: #282828;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-bottom: 20px;
+    float: left;
+    width: calc(33.33% - 40px);
+    margin-right: 20px;
+    box-sizing: border-box;
 }
 
 .vehicle {
     border-bottom: 1px solid #252525;
-    padding-bottom: 20px;
-    margin-bottom: 20px;
 }
 
 .vehicle img {
     height: 250px;
-    width: auto;
-    border-radius: 8px;
-    margin-bottom: 10px;
+    width: 100%;
+    border-radius: 8px 8px 0 0;
+}
+
+a.vehicle-link {
+    text-decoration: none;
 }
 
 .vehicle .details {
-    font-size: 18px;
+    padding: 20px;
+}
+
+.vehicle .make-model {
+    color: #e4e4e4;
+    font-size: 20px;
+    margin-bottom: 10px;
 }
 
 .vehicle .price {
+    color: #EF7A2D;
     font-size: 24px;
     font-weight: bold;
-    color: #007bff;
+    margin-bottom: 10px;
 }
 
-.vehicle .year {
-    font-size: 14px;
-    color: #828282;
-    margin-top: 5px;
-}
-
-.vehicle .mileage {
-    font-size: 14px;
+.vehicle .date-mileage {
     color: #666;
+    font-size: 14px;
 }
-
-
 
 p.basket { 
     color: #ffffff;
