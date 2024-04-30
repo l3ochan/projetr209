@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <h1 class="vehicle-list">Liste des véhicules</h1>
     <div class="container">
         <?php 
             include 'config/db_connector.php';
