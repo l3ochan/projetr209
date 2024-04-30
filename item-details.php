@@ -12,6 +12,11 @@ include 'db_connector.php';
         echo "<p>ID: " . $row['id'] . "</p>";
         echo "<p>Marque: " . $row['make'] . "</p>";
         echo "<p>Modèle: " . $row['model'] . "</p>";
+        echo "<p>Année: " . $row['year'] . "</p>";
+        echo "<p>Kilométrage: " . $row['mileage'] . "</p>";
+        echo "<p>Etat: " . $row['condition'] . "/5</p>";
+
+
         echo "<p>Description: " . $row['description'] . "</p>";
         // Affichez d'autres détails de l'article selon votre structure de données
     } else {
