@@ -76,63 +76,51 @@ p.welcome {
     padding: 0;
 }
 
-/* CSS pour le conteneur principal des véhicules */
 .vehicle-container {
-    border: 1px solid #ccc;
-    padding: 20px;
-    margin-bottom: 20px;
-    width: calc(33.33% - 40px);
-    margin-right: 20px;
-    display: inline-block; /* Afficher les conteneurs de véhicule sur la même ligne */
-    box-sizing: border-box;
+    width: calc(20% - 20px); /* Largeur de chaque conteneur (20% de la largeur de l'écran moins la marge) */
+    margin-right: 20px; /* Marge à droite pour séparer les véhicules */
+    float: left; /* Permet aux conteneurs de flotter côte à côte */
+    margin-bottom: 20px; /* Marge en bas pour séparer les véhicules */
+    border-radius: 12px; /* Bords arrondis */
+    overflow: hidden; /* Pour masquer le contenu débordant */
 }
 
-
-
-/* CSS pour chaque conteneur de véhicule */
-.container {
-    font-family: 'neuropol';
-    background-color: #282828;
-    border-radius: 8px;
-    overflow: hidden;
-    margin-bottom: 20px;
-    width: calc(33.33% - 20px);
-    box-sizing: border-box;
+.vehicle {
+    border: none; /* Supprimer la bordure par défaut */
+    padding: 20px; /* Espacement à l'intérieur du conteneur */
+    background-color: #ffffff; /* Couleur de fond du conteneur */
+    border-radius: 12px; /* Bords arrondis */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre douce */
 }
 
-/* CSS pour l'image de chaque véhicule */
 .vehicle img {
-    height: auto;
-    width: 100%;
-    border-radius: 8px 8px 0 0;
+    max-width: 100%; /* Pour s'assurer que l'image ne dépasse pas la largeur du conteneur */
+    border-radius: 12px; /* Bords arrondis */
 }
 
+.make-model {
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'neuropol'; /* Utilisation de la même police */
+    color: #202020; /* Couleur du texte */
+}
+
+.price {
+    font-size: 18px;
+    color: #EF7A2D; /* Couleur du prix */
+    margin-top: 10px; /* Marge en haut du prix */
+}
+
+.date-mileage {
+    font-size: 14px;
+    color: #666; /* Couleur de la date et du kilométrage */
+    margin-top: 5px; /* Marge en haut de la date et du kilométrage */
+}
 
 a.vehicle-link {
     text-decoration: none;
 }
 
-.vehicle .details {
-    padding: 20px;
-}
-
-.vehicle .make-model {
-    color: #e4e4e4;
-    font-size: 20px;
-    margin-bottom: 10px;
-}
-
-.vehicle .price {
-    color: #EF7A2D;
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.vehicle .date-mileage {
-    color: #666;
-    font-size: 14px;
-}
 
 p.basket { 
     color: #ffffff;
