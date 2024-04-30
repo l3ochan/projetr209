@@ -1,5 +1,12 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div class="container">
 <?php
-include 'db_connector.php';
+include 'config/db_connector.php';
 
     // Utilisez cet ID pour récupérer les informations de l'article depuis la base de données
     $query = "SELECT * FROM items WHERE id = $item_id";
@@ -24,3 +31,6 @@ include 'db_connector.php';
         echo "Aucun article trouvé avec l'ID $item_id.";
     }
 ?>
+    </div>
+</body>
+</html>

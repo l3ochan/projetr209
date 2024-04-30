@@ -1,27 +1,29 @@
-<?php 
-    include 'db_connector.php';
-
-    $query = "SELECT * FROM items";
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div class="container">
+        <?php
+        include 'config/db_connector.php';
+        $query = "SELECT * FROM items";
         $result = mysqli_query($conn, $query);
 
-        if (mysqli_num_rows($result) > 0) {
-            // Afficher les données dans un tableau
-            echo "<table class='itemlist'>";
-            echo "<tr><th>Marque</th><th>Modèle</th><th>Kilométrage</th><th>Date de création</th><th>Année</th><th>Lien</th></tr>";
-            while ($row = mysqli_fetch_assoc($result)) {
-                echo "<tr>";
-                echo "<td>" . $row['make'] . "</td>";
-                echo "<td>" . $row['model'] . "</td>";
-                echo "<td>" . $row['mileage'] . "</td>";
-                echo "<td>" . $row['date_of_creation'] . "</td>";
-                echo "<td>" . $row['year'] . "</td>";
-                echo "<td><a href='index.php?page=item-details&id=" . $row['id'] . "'>Voir détails</a></td>";
-                echo "</tr>";
-            }
-            echo "</table>";
-        } else {
-            echo "Aucune donnée trouvée dans la table 'items'.";
+        // Boucle pour afficher chaque véhicule
+        while ($row = mysqli_fetch_assoc($result)) {
+            echo '<a href="/index.php?page=item-details&id=' . $row['id'] . '" class="vehicle-link">';
+            echo '<div class="vehicle">';
+            echo '<img src="/data/ads_imgs/' . $row["id"] . '/1.png" alt="Photo du véhicule">';
+            echo '<div class="details">';
+            echo '<div class="make-model">' . $row['make'] . ' ' . $row['model'] . '</div>';
+            echo '<div class="price">' . $row['price'] . ' €</div>';
+            echo '<div class="year">Année : ' . $row['year'] . '</div>';
+            echo '<div class="mileage">Kilométrage : ' . $row['mileage'] . ' km</div>';
+            echo '</div>'; // fin .details
+            echo '</div>'; // fin .vehicle
         }
-
-        mysqli_close($conn);
         ?>
+    </div> <!-- fin .container -->
+</body>
+</html>

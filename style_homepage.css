@@ -71,40 +71,55 @@ p.welcome {
       opacity: 1; /* Termine complètement opaque */
     }
   }
-  .itemlist {
-    margin: 10px;
-    color: #f1f1f1; /* Couleur du texte */
-    font-size: 20px;
-    font-family: neuropol;
-    width: 100%;
-    border-collapse: collapse;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    opacity: 0;
-    animation: fadeIn 0.5s ease-in forwards;
-    background-color: #202020; /* Couleur de fond */
+  body {
+    margin: 0;
+    padding: 0;
 }
 
-.itemlist th, .itemlist td {
-    border: 1px solid #d7d7d7;
-    padding: 10px; /* Augmenter l'espacement autour du contenu des cellules */
+.container {
+    max-width: 250px;
+    font-family: 'neuropol';
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #282828;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.itemlist th {
-    background-color: #232323;
-    color: #c7c7c7;
-    font-weight: bold; /* Mettre en gras le texte des en-têtes */
+.vehicle {
+    border-bottom: 1px solid #252525;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
 }
 
-.itemlist tr:nth-child(even) {
-    background-color: #232323;
+.vehicle img {
+    height: 250px;
+    width: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
 }
 
-.itemlist tr:hover {
-    background-color: #232323;
+.vehicle .details {
+    font-size: 18px;
 }
+
+.vehicle .price {
+    font-size: 24px;
+    font-weight: bold;
+    color: #007bff;
+}
+
+.vehicle .year {
+    font-size: 14px;
+    color: #828282;
+    margin-top: 5px;
+}
+
+.vehicle .mileage {
+    font-size: 14px;
+    color: #666;
+}
+
 
 
 p.basket { 

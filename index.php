@@ -11,7 +11,7 @@
     <header>  
     <?php
     include 'navbar.php';
-    include 'db_connector.php';
+    include 'config/db_connector.php';
 
 
     // Récupérer le paramètre "page" de l'URL
