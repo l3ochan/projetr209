@@ -32,5 +32,27 @@ include 'config/db_connector.php';
     }
 ?>
     </div>
+
+
+    <div class="gallery">
+<?php
+        // Chemin du répertoire contenant les images
+        $directory = "data/ads_imgs/$item_id";
+
+        // Obtenir la liste des fichiers dans le répertoire
+        $files = glob($directory . "*.{jpg,jpeg,png,gif}", GLOB_BRACE);
+
+        // Parcourir les fichiers et afficher chaque image
+        foreach($files as $image) {
+            echo "<img src='$image' alt='Image' class='img-thumbnail'>";
+        }
+?>
+    </div>
+
+    <div id="myModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="img01">
+    </div>
+
 </body>
 </html>
