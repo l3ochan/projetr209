@@ -58,7 +58,7 @@ include 'config/db_connector.php';
         <img class="modal-content" id="img01">
     </div>
 
-    <script src="scripts.js"></script>
+    <script src="homepage_scripts.js"></script>
 
 </body>
 </html>
