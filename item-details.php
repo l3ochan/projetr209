@@ -35,7 +35,7 @@ include 'config/db_connector.php';
 
 
     <div class="gallery">
-        <?php
+<?php
         // Chemin du répertoire contenant les images
         $directory = "data/ads_imgs/$item_id";
 
@@ -46,7 +46,7 @@ include 'config/db_connector.php';
         foreach($files as $image) {
             echo "<img src='$image' alt='Image' class='img-thumbnail'>";
         }
-        ?>
+?>
     </div>
 
     <div id="myModal" class="modal">
