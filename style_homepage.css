@@ -158,4 +158,11 @@ div.error404 img {
     height: 350px;
     margin: auto; /* Centre l'image horizontalement */
 }
+div.item-details {
+    color: #ffffff;
+    font-size: 20px;
+    font-family: neuropol;
 
+    opacity: 0; /* Commence complètement transparent */
+    animation: fadeIn 0.5s ease-in forwards;
+}

@@ -13,6 +13,7 @@
     include 'navbar.php';
     include 'db_connector.php';
 
+
     // Récupérer le paramètre "page" de l'URL
     $page = isset($_GET['page']) ? $_GET['page'] : 'accueil';
     // Inclure la barre de navigation
@@ -35,39 +36,31 @@
         <p class="welcome">Bienvenue sur Auto Télécom, le site de revente de voiture de l'IUT de Mont de Marsan.<br>
         Sur ce site, vous retrouverez toutes nos meilleure occasions disponibles à la vente, obtenues de façon bien evidamment légale 🙂</p>  
         <p><?php echo date("H:i:s");?></p> 
-    <?php elseif ($page === 'itemlist') : ?>
-        <?php $query = "SELECT * FROM items";
-        $result = mysqli_query($conn, $query);
+    <?php elseif ($page === 'item-list') : ?>
+        <?php include('item-list.php'); ?> 
+    <?php elseif ($page === 'item-details') : ?>
+            <div class="item-details">
+                <?php 
+                    if (isset($_GET['id'])) {
+                    // Récupérer l'ID depuis l'URL
+                    $item_id = $_GET['id'];
 
-        if (mysqli_num_rows($result) > 0) {
-            // Afficher les données dans un tableau
-            echo "<table class='itemlist'>";
-            echo "<tr><th>ID</th><th>Marque</th><th>Modèle</th><th>Description</th><th>État</th><th>Kilométrage</th><th>Date de création</th><th>Année</th></tr>";
-            while ($row = mysqli_fetch_assoc($result)) {
-                echo "<tr>";
-                echo "<td>" . $row['id'] . "</td>";
-                echo "<td>" . $row['make'] . "</td>";
-                echo "<td>" . $row['model'] . "</td>";
-                echo "<td>" . $row['description'] . "</td>";
-                echo "<td>" . $row['condition'] . "</td>";
-                echo "<td>" . $row['mileage'] . "</td>";
-                echo "<td>" . $row['date_of_creation'] . "</td>";
-                echo "<td>" . $row['year'] . "</td>";
-                echo "</tr>";
-            }
-            echo "</table>";
-        } else {
-            echo "Aucune donnée trouvée dans la table 'items'.";
-        }
-
-        mysqli_close($conn);
-        ?>
+                    // Inclure le fichier item-list.php en lui passant l'ID en tant que paramètre
+                    include('item-details.php');
+                } else {
+                    // Afficher un message d'erreur ou rediriger l'utilisateur vers une autre page si aucun ID n'est spécifié
+                    echo "Aucun ID n'a été spécifié.";
+                    // Ou rediriger
+                    // header("Location: une_autre_page.php");
+                    // exit();
+                }
+                ?>
+            </div>
 
     <?php elseif ($page === 'basket') : ?>
         <p class="basket">Corps de texte du panier</p>
     <?php elseif ($page === 'about-us') : ?>
         <p class="about-us">Corps de texte du a propos</p>
-        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/3vUxlLXE7zyNS4SpRK2PjT?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
     <?php elseif ($page === 'login') : ?>
         <p class="login">Corps de texte de la page de login</p>    
     <?php else : ?>
@@ -77,7 +70,6 @@
         </div>
         <?php endif; ?>
 
-    /*zdzdzdzd*/
     </header>
 </body>
 </html>
