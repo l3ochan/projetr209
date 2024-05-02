@@ -119,7 +119,7 @@
             echo "<div class='price'>" . $row['price'] . "€</div>";
             echo "<div class='date-mileage'>" . $row['year'] . " - " . $row['mileage'] . " km</div>";
             echo "<div class='description'>" . $row['description'] . "</div>";
-            echo "<div class='condition'>Condition: " . $row['condition'] . "</div>";
+            echo "<div class='condition'>Etat: " . $row['condition'] . "</div>";
             echo "</div>";
             echo "</div>";
         } else {
