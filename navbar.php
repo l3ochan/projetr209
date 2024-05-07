@@ -12,6 +12,7 @@
                 <li><a href="index.php?page=about-us">A propos</a></li>
             </ul>
             <div class="account">
+                <a href="index.php?page=add-item">Vendre</a>
                 <a href="index.php?page=login">Se connecter</a>
             </div>
         </nav>

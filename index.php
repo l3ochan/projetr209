@@ -64,6 +64,8 @@
         <p class="about-us">Corps de texte du a propos</p>
     <?php elseif ($page === 'login') : ?>
         <p class="login">Corps de texte de la page de login</p>    
+    <?php elseif ($page === 'add-item') : ?>
+        <?php include('add-item.php'); ?>    
     <?php else : ?>
         <div class="error404">
             <img src="/assets/imgs/404.png" class="404 error picture" alt="404 error picture">

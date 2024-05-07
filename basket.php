@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body id="basket">
-    <h1 class="basket-title">Panier</h1>
+    <h1 class="page-title">Panier</h1>
     <div class="separator"></div>
             <p class="basket-body">Corps de texte du panier</p>
 </body>

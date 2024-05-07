@@ -5,7 +5,7 @@
 html, body {
     margin: 0;
     padding: 0;
-    background-color: #202020;
+    background-color: #ffffff;
 }
 nav.menu .link-container img.home-picture {
     width: 200px;
@@ -54,7 +54,7 @@ nav.menu a:hover {
     align-items: center;
 }
 p.welcome {
-    color: #ffffff;
+    color: #000000;
     font-size: 20px;
     font-family: neuropol;
     display: flex;
@@ -91,8 +91,8 @@ p.disclaimer-project{
     max-width: 80%;
 
 }
-h1.itemdetails-title { 
-    color: #ffffff;
+.page-title { 
+    color: #000000;
     font-size: 40px;
     font-family: neuropol;
     display: flex;
@@ -105,7 +105,7 @@ h1.itemdetails-title {
 .vehicle-container {
     margin: 10px;
     padding: 10px;
-    width: calc(20% - 20px); 
+    width: calc(15% - 20px); 
     margin-right: 20px; 
     float: left;
     margin-bottom: 20px;
@@ -122,7 +122,7 @@ h1.itemdetails-title {
 .vehicle {
     border: none; 
     padding: 20px; 
-    background-color: #3a3a3a; 
+    background-color: #e7e7e7; 
     border-radius: 12px; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
 }
@@ -136,7 +136,7 @@ h1.itemdetails-title {
     font-size: 20px;
     font-weight: bold;
     
-    color: #ffffff; 
+    color: #000000; 
 }
 
 .price {
@@ -147,7 +147,7 @@ h1.itemdetails-title {
 
 .date-mileage {
     font-size: 14px;
-    color: #666; 
+    color: #2e2e2e; 
     margin-top: 8px; 
 }
 
@@ -157,7 +157,7 @@ a.vehicle-link {
 
 
 p.basket-body { 
-    color: #ffffff;
+    color: #000000;
     font-size: 20px;
     font-family: neuropol;
     display: flex;
@@ -168,7 +168,7 @@ p.basket-body {
     animation: fadeIn 0.5s ease-in forwards; /* Animation nommée "fadeIn" */
 }
 p.about-us { 
-    color: #ffffff;
+    color: #000000;
     font-size: 20px;
     font-family: neuropol;
     display: flex;
@@ -179,7 +179,7 @@ p.about-us {
     animation: fadeIn 0.5s ease-in forwards; /* Animation nommée "fadeIn" */
 }
 p.login { 
-    color: #ffffff;
+    color: #000000;
     font-size: 20px;
     font-family: neuropol;
     display: flex;
@@ -193,7 +193,7 @@ div.error404 {
     text-align: center; /* Centre le contenu horizontalement */
 }
 div.error404 h1 { 
-    color: #ffffff;
+    color: #000000;
     font-size: 50px;
     font-family: neuropol;
     display: flex;
@@ -208,7 +208,7 @@ div.error404 img {
     margin: auto; /* Centre l'image horizontalement */
 }
 div.item-details {
-    color: #ffffff;
+    color: #000000;
     font-size: 20px;
     font-family: neuropol;
     margin: 10px;
@@ -296,14 +296,13 @@ div.item-details {
     transform: scale(1.1); /* Effet de zoom pour l'image active et au survol */
     opacity: 1;
 }
-#basket h1.basket-title {
-    color: #ffffff;
-    font-size: 40px;
+.result {
+    color: #000000;
+    font-size: 20px;
     font-family: neuropol;
     display: flex;
     justify-content: center; 
     align-items: center; 
-    text-align: center;
     opacity: 0; /* Commence complètement transparent */
     animation: fadeIn 0.5s ease-in forwards; /* Animation nommée "fadeIn" */
 }
