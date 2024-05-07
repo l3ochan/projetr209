@@ -59,7 +59,7 @@
             </div>
 
     <?php elseif ($page === 'basket') : ?>
-        <p class="basket">Corps de texte du panier</p>
+        <?php include('basket.php'); ?>
     <?php elseif ($page === 'about-us') : ?>
         <p class="about-us">Corps de texte du a propos</p>
     <?php elseif ($page === 'login') : ?>

@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1 class="vehicle-list">Liste des véhicules</h1>
+    <h1 class="itemdetails-title">Liste des véhicules</h1>
     <div class="separator"></div>
     <div class="container">
         <?php 
