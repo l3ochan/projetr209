@@ -51,7 +51,8 @@
                     $itemId = $conn->insert_id; // Récupérer l'ID de l'annonce nouvellement insérée
                     $newDirectory = $directory . $itemId;
                     if (!is_dir($newDirectory)) {
-                        mkdir($newDirectory, 0777, true);
+                        mkdir($newDirectory);
+                        chmod($newDirectory, 0777);
                     }
 
                     // Traitement de la photo principale
@@ -86,7 +87,7 @@
     </div>
 
     <div class="basket-body">
-        <form action='' method="post">
+        <form action='' method="post" enctype="multipart/form-data">
             <label for="make">Marque :</label><br>
             <input type="text" id="make" name="make" required><br><br>
 
