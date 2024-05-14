@@ -33,7 +33,7 @@
                     echo "</div>";
                     echo "<a href="basket.php?action=addItem_basket&amp;l=itemName&amp;p=itemPrice" onclick="window.open(this.href, '', 
                     'toolbar=no, location=no, directories=no, status=yes, scrollbars=yes, resizable=yes, copyhistory=no, width=600, height=350'); return false;">Ajouter au panier</a>";
-
+/**rr */
                 }
             } else {
                 echo "<p>Aucune donnée trouvée dans la table 'items'.</p>";
