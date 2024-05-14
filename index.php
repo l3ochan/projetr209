@@ -2,7 +2,6 @@
 <html lang="fr">
 <head>
     <meta charset="utf-8">
-    <title>AutoIUT</title>
     <link rel="stylesheet" href="style_homepage.css">
     <script src="script.js"></script>
     <link rel="icon" href="/assets/imgs/favicon.png" type="image/png">
@@ -36,10 +35,7 @@
     }
     ?>
     <?php if ($page === 'home') : ?>
-        <p class="welcome">Bienvenue sur Auto Télécom, le site de revente de voiture de l'IUT de Mont de Marsan.<br>
-        Sur ce site, vous retrouverez toutes nos meilleure occasions disponibles à la vente, obtenues de façon bien evidamment légale 🙂.</p>
-    </header>
-        <p class="disclaimer-project">DISCLAIMER : Ce site fait partie d'un projet scolaire de fin d'année, aucun des articles en "vente" ne le sont réellement</p>   
+        <?php include('homepage.php'); ?> 
     <?php elseif ($page === 'item-list') : ?>
         <?php include('item-list.php'); ?> 
     <?php elseif ($page === 'item-details') : ?>
@@ -66,7 +62,9 @@
     <?php elseif ($page === 'about-us') : ?>
         <p class="about-us">Corps de texte du a propos</p>
     <?php elseif ($page === 'login') : ?>
-        <p class="login">Corps de texte de la page de login</p>    
+        <?php include('sessions/login.php'); ?>    
+    <?php elseif ($page === 'signin') : ?>
+        <?php include('sessions/signin.php'); ?>  
     <?php elseif ($page === 'add-item') : ?>
         <?php include('add-item.php'); ?>    
     <?php elseif ($page === 'administration') : ?>
