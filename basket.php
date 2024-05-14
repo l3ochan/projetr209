@@ -80,8 +80,7 @@ echo '<?xml version="1.0" encoding="utf-8"?>';?>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr">
 <head>
 <title>Votre panier</title>
-</head>
-<body>
+
 
 <form method="post" action="panier.php">
 <table style="width: 400px">
