@@ -5,12 +5,12 @@ include 'config/db_connector.php';
  * Verifie si le panier existe, le crée sinon
  * @return boolean
  */
-function creationPanier(){
+function createBasket(){
    if (!isset($_SESSION['panier'])){
-      $_SESSION['panier']=array();
-      $_SESSION['panier']['libelleProduit'] = array();
-      $_SESSION['panier']['prixProduit'] = array();
-      $_SESSION['panier']['verrou'] = false;
+      $_SESSION['basket']=array();
+      $_SESSION['basket']['productName'] = array();
+      $_SESSION['basket']['itemPrice'] = array();
+      $_SESSION['basket']['lock'] = false;
    }
    return true;
 }

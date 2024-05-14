@@ -55,20 +55,14 @@ if($action !== null)
 
 if (!$erreur){
    switch($action){
-      Case "ajout":
-         ajouterArticle($l,$q,$p);
+      Case "add_item":
+         addItem_basket($l,$q,$p);
          break;
 
-      Case "suppression":
-         supprimerArticle($l);
+      Case "remove_item":
+         delItem_basket($l);
          break;
 
-      Case "refresh" :
-         for ($i = 0 ; $i < count($QteArticle) ; $i++)
-         {
-            modifierQTeArticle($_SESSION['panier']['libelleProduit'][$i],round($QteArticle[$i]));
-         }
-         break;
 
       Default:
          break;
@@ -76,14 +70,8 @@ if (!$erreur){
 }
 
 echo '<?xml version="1.0" encoding="utf-8"?>';?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr">
-<head>
-<title>Votre panier</title>
-</head>
-<body>
 
-<form method="post" action="panier.php">
+<form method="post" action="basket.php">
 <table style="width: 400px">
     <tr>
         <td colspan="4">Votre panier</td>
@@ -97,7 +85,7 @@ echo '<?xml version="1.0" encoding="utf-8"?>';?>
 
 
     <?php
-    if (creationPanier())
+    if (createBasket())
     {
        $nbArticles=count($_SESSION['panier']['libelleProduit']);
        if ($nbArticles <= 0)
@@ -116,7 +104,7 @@ echo '<?xml version="1.0" encoding="utf-8"?>';?>
 
           echo "<tr><td colspan=\"2\"> </td>";
           echo "<td colspan=\"2\">";
-          echo "Total : ".MontantGlobal();
+          echo "Total : ".totalPrice();
           echo "</td></tr>";
 
           echo "<tr><td colspan=\"4\">";
