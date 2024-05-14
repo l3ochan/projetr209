@@ -19,7 +19,7 @@
 
 <?php
 session_start();
-include_once("basket-function.php");
+include("basket-function.php");
 
 $erreur = false;
 

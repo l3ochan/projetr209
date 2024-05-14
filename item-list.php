@@ -12,6 +12,7 @@
     <div class="container">
         <?php 
             include 'config/db_connector.php';
+            include 'basket-function.php';
 
             $query = "SELECT * FROM items";
             $result = mysqli_query($conn, $query);
