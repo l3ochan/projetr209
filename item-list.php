@@ -12,7 +12,7 @@
     <div class="container">
         <?php 
             include 'config/db_connector.php';
-            include 'basket-function.php';
+            
 
             $query = "SELECT * FROM items";
             $result = mysqli_query($conn, $query);
@@ -27,17 +27,16 @@
                     echo "<div class='make-model'>" . $row['make'] . " " . $row['model'] . "</div>";
                     echo "<div class='price'>" . $row['price'] . "€</div>";
                     echo "<div class='date-mileage'>" . $row['year'] . " - " . $row['mileage'] . " km</div>";
-                    
-                    echo "<a href="basket.php?action=ajout&amp;l=LIBELLEPRODUIT&amp;p=PRIXPRODUIT" onclick="window.open(this.href, '', 
-                    'toolbar=no, location=no, directories=no, status=yes, scrollbars=yes, resizable=yes, copyhistory=no, width=600, height=350'); return false;">Ajouter au panier</a>";
-
+                    // Bouton d'ajout au panier avec un formulaire
+                    echo "<form method='post' action='https://projetr209.nekocorp.fr/index.php?page=basket'>";
+                    echo "<input type='hidden' name='itemID' value='" . $row['id'] . "'>";
+                    echo "<input type='submit' name='addItem' value='Ajouter au panier'>";
+                    echo "</form>";
                     echo "</div>";
                     echo "</a>";
                     echo "</div>";
                     echo "</div>";
-                    echo "<a href="basket.php?action=addItem_basket&amp;l=itemName&amp;p=itemPrice" onclick="window.open(this.href, '', 
-                    'toolbar=no, location=no, directories=no, status=yes, scrollbars=yes, resizable=yes, copyhistory=no, width=600, height=350'); return false;">Ajouter au panier</a>";
-/**rr */
+                    
                 }
             } else {
                 echo "<p>Aucune donnée trouvée dans la table 'items'.</p>";

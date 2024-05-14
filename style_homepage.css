@@ -102,6 +102,10 @@ p.disclaimer-project{
     opacity: 0; /* Commence complètement transparent */
     animation: fadeIn 0.5s ease-in forwards; /* Animation nommée "fadeIn" */
 }
+.container {
+    display: flex;
+    flex-wrap: wrap;
+}
 .vehicle-container {
     margin: 10px;
     padding: 10px;
@@ -278,7 +282,6 @@ div.item-details {
     display: flex;
     justify-content: center;
     margin-top: 20px;
-    overflow-x: auto; /* Permet de faire défiler horizontalement si nécessaire */
 }
 
 #vehicle-detail-page .thumbnail {

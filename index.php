@@ -12,7 +12,10 @@
     <?php
     include 'navbar.php';
     include 'config/db_connector.php';
+    
+      
 
+    
 
     // Récupérer le paramètre "page" de l'URL
     $page = isset($_GET['page']) ? $_GET['page'] : 'accueil';

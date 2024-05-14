@@ -1,129 +1,114 @@
 <?php
-
 include 'config/db_connector.php';
-/**
- * Verifie si le panier existe, le crée sinon
- * @return boolean
- */
-function createBasket(){
-   if (!isset($_SESSION['panier'])){
-      $_SESSION['basket']=array();
-      $_SESSION['basket']['itemName'] = array();
-      $_SESSION['basket']['itemPrice'] = array();
-      $_SESSION['basket']['lock'] = false;
-   }
-   return true;
-}
-
 
 /**
- * Ajoute un article dans le basket
- * @param string $itemName
- * @param float $productPrice
- * @return void
- */
-function addItem_basket($itemName,$productPrice,$lock){
-
-   //Si le basket existe
-   if (createBasket() && !isLocked())
-   {
-      //Si le produit existe déjà on affiche un message d'erreur
-      $itemPosition = array_search($itemName,  $_SESSION['basket']['itemName']);
-
-      if ($itemPosition !== false)
-      {
-         echo "Le véhicule est déjà présent dans votre panier.";
-      }
-      else
-      {
-         //Sinon on ajoute le produit
-         array_push( $_SESSION['basket']['itemName'],$itemName);
-         array_push( $_SESSION['basket']['productPrice'],$productPrice);
-      }
-   }
-   else
-   echo "Un problème est survenu veuillez contacter l'administrateur du site.";
-}
-
-
-/**
- * Supprime un article du panier
- * @param $itemName
- * @return unknown_type
- */
-function delItem_basket($itemName){
-   //Si le panier existe
-   if (createBasket() && !isLocked())
-   {
-      //Nous allons passer par un panier temporaire
-      $tmp=array();
-      $tmp['itemName'] = array();
-      $tmp['productPrice'] = array();
-      $tmp['lock'] = $_SESSION['basket']['lock'];
-
-      for($i = 0; $i < count($_SESSION['basket']['itemName']); $i++)
-      {
-         if ($_SESSION['basket']['itemName'][$i] !== $itemName)
-         {
-            array_push( $tmp['itemName'],$_SESSION['basket']['itemName'][$i]);
-            array_push( $tmp['productPrice'],$_SESSION['basket']['productPrice'][$i]);
-         }
-
-      }
-      //On remplace le panier en session par notre panier temporaire à jour
-      $_SESSION['basket'] =  $tmp;
-      //On efface notre panier temporaire
-      unset($tmp);
-   }
-   else
-   echo "Un problème est survenu veuillez contacter l'administrateur du site.";
-}
-
-
-/**
- * Montant total du panier
+ * Crée un panier si nécessaire et retourne l'ID du panier.
  * @return int
  */
-function totalPrice(){
-   $total=0;
-   for($i = 0; $i < count($_SESSION['basket']['itemName']); $i++)
-   {
-      $total += $_SESSION['basket'] * $_SESSION['basket']['productPrice'][$i];
-   }
-   return $total;
-}
+function createBasket() {
+    global $conn;
 
-
-/**
- * Fonction de suppression du panier
- * @return void
- */
-function delBasket(){
-   unset($_SESSION['basket']);
+    // Insère un nouveau panier dans la base de données et récupère son ID
+    $query = "INSERT INTO basket (content) VALUES ('')";
+    if (mysqli_query($conn, $query)) {
+        return mysqli_insert_id($conn);
+    } else {
+        echo "Erreur lors de la création du panier : " . mysqli_error($conn);
+        return null;
+    }
 }
 
 /**
- * Permet de savoir si le panier est verrouillé
- * @return booleen
+ * Ajoute un article au panier.
+ * @param int $itemID
  */
-function isLocked(){
-   if (isset($_SESSION['basket']) && $_SESSION['basket']['Lock'])
-   return true;
-   else
-   return false;
+function addItemToBasket($itemID) {
+    global $conn;
+
+    // Vérifie si le panier existe dans la session
+    if (isset($_SESSION['basket_id'])) {
+        $basketID = $_SESSION['basket_id'];
+
+        // Récupère le contenu actuel du panier
+        $query = "SELECT content FROM basket WHERE id = $basketID";
+        $result = mysqli_query($conn, $query);
+        $row = mysqli_fetch_assoc($result);
+
+        // Ajoute le nouvel itemID au contenu du panier
+        $content = $row['content'];
+        $contentArray = $content ? explode(',', $content) : array();
+        $contentArray[] = $itemID;
+        $newContent = implode(',', $contentArray);
+
+        // Met à jour le panier avec le nouveau contenu
+        $query = "UPDATE basket SET content = '$newContent' WHERE id = $basketID";
+        mysqli_query($conn, $query);
+    } else {
+        echo "Erreur : Panier non trouvé.";
+    }
 }
 
 /**
- * Compte le nombre d'articles différents dans le panier
- * @return int
+ * Calcule le prix total du panier.
+ * @return float
  */
-function countItems()
-{
-   if (isset($_SESSION['basket']))
-   return count($_SESSION['basket']['itemName']);
-   else
-   return 0;
+function totalPrice() {
+    global $conn;
 
+    if (isset($_SESSION['basket_id'])) {
+        $basketID = $_SESSION['basket_id'];
+
+        // Récupère le contenu du panier
+        $query = "SELECT content FROM basket WHERE id = $basketID";
+        $result = mysqli_query($conn, $query);
+        $row = mysqli_fetch_assoc($result);
+        $content = $row['content'];
+
+        // Calcule le prix total
+        $total = 0;
+        if ($content) {
+            $contentArray = explode(',', $content);
+            foreach ($contentArray as $itemID) {
+                $query = "SELECT price FROM items WHERE id = $itemID";
+                $result = mysqli_query($conn, $query);
+                $row = mysqli_fetch_assoc($result);
+                $total += $row['price'];
+            }
+        }
+        return $total;
+    }
+    return 0;
+}
+
+/**
+ * Supprime un article du panier.
+ * @param int $itemID
+ */
+function delItemFromBasket($itemID) {
+    global $conn;
+
+    if (isset($_SESSION['basket_id'])) {
+        $basketID = $_SESSION['basket_id'];
+
+        // Récupère le contenu actuel du panier
+        $query = "SELECT content FROM basket WHERE id = $basketID";
+        $result = mysqli_query($conn, $query);
+        $row = mysqli_fetch_assoc($result);
+
+        // Supprime l'itemID du contenu du panier
+        $content = $row['content'];
+        $contentArray = explode(',', $content);
+        if (($key = array_search($itemID, $contentArray)) !== false) {
+            unset($contentArray[$key]);
+        }
+        $newContent = implode(',', $contentArray);
+
+        // Met à jour le panier avec le nouveau contenu
+        $query = "UPDATE basket SET content = '$newContent' WHERE id = $basketID";
+        mysqli_query($conn, $query);
+    } else {
+        echo "Erreur : Panier non trouvé.";
+    }
 }
 
 ?>

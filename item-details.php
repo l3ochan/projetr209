@@ -36,7 +36,32 @@
             echo "<div class='price'>" . $row['price'] . "€</div>";
             echo "<div class='date-mileage'>" . $row['year'] . " - " . $row['mileage'] . " km</div>";
             echo "<div class='description'>" . $row['description'] . "</div>";
-            echo "<div class='condition'>Etat: " . $row['condition'] . "</div>";
+            echo "<div class='condition'>Etat: ";
+            $etat = intval($row['condition']);
+            switch ($etat) {
+                case 1:
+                    echo "Très mauvais état";
+                    break;
+                case 2:
+                    echo "Mauvais état";
+                    break;
+                case 3:
+                    echo "Etat moyen";
+                    break;
+                case 4:
+                    echo "Bon état";
+                    break;
+                case 5:
+                    echo "Très bon état";
+                    break;
+                default:
+                    echo "Inconnu";
+                    break;
+            }
+            echo "</div>";
+            echo "<form method='post' action='https://projetr209.nekocorp.fr/index.php?page=basket'>";
+            echo "<input type='hidden' name='itemID' value='" . $row['id'] . "'>";
+            echo "<input type='submit' name='addItem' value='Ajouter au panier'>";
             echo "</div>";
             echo "</div>";
         } else {

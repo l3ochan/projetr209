@@ -4,6 +4,7 @@
     <script src="script.js"></script>
 </head>
 <nav class="menu">
+
             <ul class="link-container">
                 <a href="index.php?page=home"><img src="assets/imgs/logo.png" class="home-picture" alt="Logo"></a>
                 <li><a href="index.php?page=home">Accueil</a></li>
