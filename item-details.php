@@ -8,6 +8,7 @@
     <div class="vehicle-details-container">
     <?php 
     include 'config/db_connector.php';
+    include 'basket-function.php';
 
     if (isset($_GET['id'])) {
         $vehicle_id = $_GET['id'];
