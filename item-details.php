@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Détails du véhicule</title>
+    <title>AutoIUT - Détails du véhicule</title>
 </head>
 <body id="vehicle-detail-page">
     <div class="vehicle-details-container">

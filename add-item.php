@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body id="add-item">
-    <h1 class="page-title">Ajouter un véhicule à vendre</h1>
+    <h1 class="page-title">AutoIUT - Vendre</h1>
     <div class="separator"></div>
     <div class="result">
                 <?php
@@ -31,16 +31,16 @@
                 $year = intval($_POST['year']);
                 $price = floatval($_POST['price']);
                 $energy = intval($_POST['energy']);
-                $status = intval(1);
+                $status = intval('1');
 
                 // Préparer la requête SQL d'insertion avec des paramètres nommés
-                $query = "INSERT INTO items (make, model, description, `condition`, mileage, year, price, energy,status) 
+                $query = "INSERT INTO items (make, model, description, `condition`, mileage, year, price, energy, status) 
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 
                 $stmt = $conn->prepare($query);
         
                 // Liaison des paramètres
-                $stmt->bind_param('sssiiid', $make, $model, $description, $condition, $mileage, $year, $price, $energy, $status);
+                $stmt->bind_param('sssiiidii', $make, $model, $description, $condition, $mileage, $year, $price, $energy, $status);
 
                 // Exécuter la requête d'insertion
                 if ($stmt->execute()) {
