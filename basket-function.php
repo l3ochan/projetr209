@@ -8,7 +8,7 @@ include 'config/db_connector.php';
 function createBasket(){
    if (!isset($_SESSION['panier'])){
       $_SESSION['basket']=array();
-      $_SESSION['basket']['productName'] = array();
+      $_SESSION['basket']['itemName'] = array();
       $_SESSION['basket']['itemPrice'] = array();
       $_SESSION['basket']['lock'] = false;
    }
@@ -18,17 +18,17 @@ function createBasket(){
 
 /**
  * Ajoute un article dans le basket
- * @param string $productName
+ * @param string $itemName
  * @param float $productPrice
  * @return void
  */
-function addItem_basket($productName,$productPrice,$lock){
+function addItem_basket($itemName,$productPrice,$lock){
 
    //Si le basket existe
    if (createBasket() && !isLocked())
    {
       //Si le produit existe déjà on affiche un message d'erreur
-      $itemPosition = array_search($productName,  $_SESSION['basket']['productName']);
+      $itemPosition = array_search($itemName,  $_SESSION['basket']['itemName']);
 
       if ($itemPosition !== false)
       {
@@ -37,7 +37,7 @@ function addItem_basket($productName,$productPrice,$lock){
       else
       {
          //Sinon on ajoute le produit
-         array_push( $_SESSION['basket']['productName'],$productName);
+         array_push( $_SESSION['basket']['itemName'],$itemName);
          array_push( $_SESSION['basket']['productPrice'],$productPrice);
       }
    }
@@ -48,24 +48,24 @@ function addItem_basket($productName,$productPrice,$lock){
 
 /**
  * Supprime un article du panier
- * @param $productName
+ * @param $itemName
  * @return unknown_type
  */
-function delItem_basket($productName){
+function delItem_basket($itemName){
    //Si le panier existe
    if (createBasket() && !isLocked())
    {
       //Nous allons passer par un panier temporaire
       $tmp=array();
-      $tmp['productName'] = array();
+      $tmp['itemName'] = array();
       $tmp['productPrice'] = array();
       $tmp['lock'] = $_SESSION['basket']['lock'];
 
-      for($i = 0; $i < count($_SESSION['basket']['productName']); $i++)
+      for($i = 0; $i < count($_SESSION['basket']['itemName']); $i++)
       {
-         if ($_SESSION['basket']['productName'][$i] !== $productName)
+         if ($_SESSION['basket']['itemName'][$i] !== $itemName)
          {
-            array_push( $tmp['productName'],$_SESSION['basket']['productName'][$i]);
+            array_push( $tmp['itemName'],$_SESSION['basket']['itemName'][$i]);
             array_push( $tmp['productPrice'],$_SESSION['basket']['productPrice'][$i]);
          }
 
@@ -86,7 +86,7 @@ function delItem_basket($productName){
  */
 function totalPrice(){
    $total=0;
-   for($i = 0; $i < count($_SESSION['basket']['productName']); $i++)
+   for($i = 0; $i < count($_SESSION['basket']['itemName']); $i++)
    {
       $total += $_SESSION['basket'] * $_SESSION['basket']['productPrice'][$i];
    }
@@ -120,7 +120,7 @@ function isLocked(){
 function countItems()
 {
    if (isset($_SESSION['basket']))
-   return count($_SESSION['basket']['productName']);
+   return count($_SESSION['basket']['itemName']);
    else
    return 0;
 

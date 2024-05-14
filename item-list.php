@@ -27,13 +27,14 @@
                     echo "<div class='make-model'>" . $row['make'] . " " . $row['model'] . "</div>";
                     echo "<div class='price'>" . $row['price'] . "€</div>";
                     echo "<div class='date-mileage'>" . $row['year'] . " - " . $row['mileage'] . " km</div>";
+                    
+                    echo "<a href="basket.php?action=ajout&amp;l=LIBELLEPRODUIT&amp;p=PRIXPRODUIT" onclick="window.open(this.href, '', 
+                    'toolbar=no, location=no, directories=no, status=yes, scrollbars=yes, resizable=yes, copyhistory=no, width=600, height=350'); return false;">Ajouter au panier</a>";
+
                     echo "</div>";
                     echo "</a>";
                     echo "</div>";
                     echo "</div>";
-                    echo "<a href="basket.php?action=ajout&amp;l=LIBELLEPRODUIT&amp;p=PRIXPRODUIT" onclick="window.open(this.href, '', 
-                    'toolbar=no, location=no, directories=no, status=yes, scrollbars=yes, resizable=yes, copyhistory=no, width=600, height=350'); return false;">Ajouter au panier</a>";
-
                 }
             } else {
                 echo "<p>Aucune donnée trouvée dans la table 'items'.</p>";
