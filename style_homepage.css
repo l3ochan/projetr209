@@ -142,17 +142,20 @@ p.disclaimer-project{
     
     color: #000000; 
 }
-
 .price {
     font-size: 22px;
     color: #EF7A2D; 
      
 }
-
 .date-mileage {
     font-size: 14px;
     color: #2e2e2e; 
     margin-top: 8px; 
+}
+.energy {
+    font-size: 13px;
+    font-weight: bold;
+    color: #000000; 
 }
 
 a.vehicle-link {
@@ -299,6 +302,14 @@ div.item-details {
     transform: scale(1.1); /* Effet de zoom pour l'image active et au survol */
     opacity: 1;
 }
+#vehicle-detail-page .energy {
+    color: #000000;
+    font-size: 20px;
+    margin: 10px;
+    opacity: 0; /* Commence complètement transparent */
+    animation: fadeIn 0.5s ease-in forwards;
+}
+
 .result {
     color: #000000;
     font-size: 20px;

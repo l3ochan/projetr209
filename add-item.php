@@ -30,15 +30,17 @@
                 $mileage = intval($_POST['mileage']);
                 $year = intval($_POST['year']);
                 $price = floatval($_POST['price']);
+                $energy = intval($_POST['energy']);
+                $status = intval(1);
 
                 // Préparer la requête SQL d'insertion avec des paramètres nommés
-                $query = "INSERT INTO items (make, model, description, `condition`, mileage, year, price) 
-                VALUES (?, ?, ?, ?, ?, ?, ?)";
+                $query = "INSERT INTO items (make, model, description, `condition`, mileage, year, price, energy,status) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 
                 $stmt = $conn->prepare($query);
         
                 // Liaison des paramètres
-                $stmt->bind_param('sssiiid', $make, $model, $description, $condition, $mileage, $year, $price);
+                $stmt->bind_param('sssiiid', $make, $model, $description, $condition, $mileage, $year, $price, $energy, $status);
 
                 // Exécuter la requête d'insertion
                 if ($stmt->execute()) {
@@ -104,6 +106,15 @@
                 <option value="3">État moyen</option>
                 <option value="4">Bon état</option>
                 <option value="5">Très bon état</option>
+            </select><br><br>
+
+            <label for="energy">Energie :</label><br>
+            <select id="energy" name="energy" required>
+                <option value="1">Diesel</option>
+                <option value="2">Essence</option>
+                <option value="3">Electrique</option>
+                <option value="4">Gaz</option>
+                <option value="5">Ethanol</option>
             </select><br><br>
 
             <label for="mileage">Kilométrage :</label><br>

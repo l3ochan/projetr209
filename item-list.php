@@ -27,6 +27,29 @@
                     echo "<div class='make-model'>" . $row['make'] . " " . $row['model'] . "</div>";
                     echo "<div class='price'>" . $row['price'] . "€</div>";
                     echo "<div class='date-mileage'>" . $row['year'] . " - " . $row['mileage'] . " km</div>";
+                    echo "<div class='energy'>";
+                    $energy = intval($row['energy']);
+                    switch ($energy) {
+                        case 1:
+                            echo "Diesel";
+                            break;
+                        case 2:
+                            echo "Essence";
+                            break;
+                        case 3:
+                            echo "Electrique";
+                            break;
+                        case 4:
+                            echo "Gaz";
+                            break;
+                        case 5:
+                            echo "Ethanol";
+                            break;
+                        default:
+                            echo "Inconnu";
+                            break;
+                    }
+                    echo "</div>";
                     // Bouton d'ajout au panier avec un formulaire
                     echo "<form method='post' action='https://projetr209.nekocorp.fr/index.php?page=basket'>";
                     echo "<input type='hidden' name='itemID' value='" . $row['id'] . "'>";

@@ -37,8 +37,8 @@
             echo "<div class='date-mileage'>" . $row['year'] . " - " . $row['mileage'] . " km</div>";
             echo "<div class='description'>" . $row['description'] . "</div>";
             echo "<div class='condition'>Etat: ";
-            $etat = intval($row['condition']);
-            switch ($etat) {
+            $condition = intval($row['condition']);
+            switch ($condition) {
                 case 1:
                     echo "Très mauvais état";
                     break;
@@ -58,6 +58,30 @@
                     echo "Inconnu";
                     break;
             }
+            echo "<br>";
+            echo "<div class='energy'>";
+            $energy = intval($row['energy']);
+            switch ($energy) {
+                case 1:
+                    echo "Diesel";
+                    break;
+                case 2:
+                    echo "Essence";
+                    break;
+                case 3:
+                    echo "Electrique";
+                    break;
+                case 4:
+                    echo "Gaz";
+                    break;
+                case 5:
+                    echo "Ethanol";
+                    break;
+                default:
+                    echo "Inconnu";
+                    break;
+            }
+            echo "</div>";
             echo "</div>";
             echo "<form method='post' action='https://projetr209.nekocorp.fr/index.php?page=basket'>";
             echo "<input type='hidden' name='itemID' value='" . $row['id'] . "'>";
