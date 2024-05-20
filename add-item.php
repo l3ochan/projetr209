@@ -3,51 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panier</title>
-    <link rel="stylesheet" href="style.css">
+    <title>AutoIUT - Vendre</title>
+    <link rel="stylesheet" href="style_additem.css">
 </head>
 <body id="add-item">
     <h1 class="page-title">AutoIUT - Vendre</h1>
     <div class="separator"></div>
     <div class="result">
-                <?php
-            // Afficher les erreurs PHP
-            ini_set('display_errors', 1);
-            ini_set('display_startup_errors', 1);
-            error_reporting(E_ALL);
+            <?php
+            // Démarrer la session
+            session_start();
 
-            // Vérifier si le formulaire a été soumis
-            if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                // Inclure le fichier de connexion à la base de données
-                include 'config/db_connector.php';
-                    
+            // Vérifier si l'utilisateur est connecté
+            if (!isset($_SESSION['token'])) {
+                // Afficher un message d'erreur et rediriger vers la page de connexion s'il n'est pas connecté
+                echo "<p>Vous devez être connecté pour mettre un véhicule en vente. Veuillez vous <a href='index.php?page=login'>connecter</a>.</p>";
+                exit();
+            }
 
-                // Récupérer les valeurs du formulaire après les avoir nettoyées
-                $make = htmlspecialchars($_POST['make']);
-                $model = htmlspecialchars($_POST['model']);
-                $description = htmlspecialchars($_POST['description']);
-                $condition = intval($_POST['condition']);
-                $mileage = intval($_POST['mileage']);
-                $year = intval($_POST['year']);
-                $price = floatval($_POST['price']);
-                $energy = intval($_POST['energy']);
-                $status = intval('1');
+            // Inclure le fichier de connexion à la base de données
+            include 'config/db_connector.php';
 
-                // Préparer la requête SQL d'insertion avec des paramètres nommés
-                $query = "INSERT INTO items (make, model, description, `condition`, mileage, year, price, energy, status) 
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-                
-                $stmt = $conn->prepare($query);
-        
-                // Liaison des paramètres
-                $stmt->bind_param('sssiiidii', $make, $model, $description, $condition, $mileage, $year, $price, $energy, $status);
+            // Récupérer le token de l'utilisateur connecté
+            $token = $_SESSION['token'];
 
-                // Exécuter la requête d'insertion
-                if ($stmt->execute()) {
-                    // Récupérer l'ID de l'article inséré
-                    $lastInsertedId = $conn->insert_id;
-                        // Répertoire de destination pour les images
-                    $directory = "data/ads_imgs/";
+            // Requête SQL pour récupérer l'ID de l'utilisateur à partir de son token
+            $query = "SELECT id FROM users WHERE token = ?";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param('s', $token);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            // Vérifier si l'utilisateur existe dans la base de données
+            if ($result->num_rows > 0) {
+                // Récupérer l'ID de l'utilisateur
+                $row = $result->fetch_assoc();
+                $userId = $row['id'];
+
+                // Vérifier si le formulaire a été soumis
+                if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                    // Récupérer les valeurs du formulaire après les avoir nettoyées
+                    $make = htmlspecialchars($_POST['make']);
+                    $model = htmlspecialchars($_POST['model']);
+                    $description = htmlspecialchars($_POST['description']);
+                    $condition = intval($_POST['condition']);
+                    $mileage = intval($_POST['mileage']);
+                    $year = intval($_POST['year']);
+                    $price = floatval($_POST['price']);
+                    $energy = intval($_POST['energy']);
+                    $status = intval('1');
+
+                    // Préparer la requête SQL d'insertion avec des paramètres nommés
+                    $query = "INSERT INTO items (make, model, description, `condition`, mileage, year, price, energy, status, ownerID, date_of_creation) 
+                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())";
+
+                    $stmt = $conn->prepare($query);
+
+                    // Liaison des paramètres
+                    $stmt->bind_param('sssiiidiii', $make, $model, $description, $condition, $mileage, $year, $price, $energy, $status, $userId);
+
+                    // Exécuter la requête d'insertion
+                    if ($stmt->execute()) {
+                        // Insérer l'annonce réussie, rediriger l'utilisateur vers la page de détails du produit
+                        $lastInsertedId = $conn->insert_id;
+                        $directory = "data/ads_imgs/";
 
                     // Créer un nouveau dossier avec l'ID de l'annonce comme nom
                     $itemId = $conn->insert_id; // Récupérer l'ID de l'annonce nouvellement insérée
@@ -73,25 +92,93 @@
                             move_uploaded_file($tmpName, $otherImagePath);
                         }
                     }    
-                    // Construire l'URL de la page de détails du produit
-                    $url = "https://projetr209.nekocorp.fr/index.php?page=item-details&id=" . $lastInsertedId;
+                        $url = "https://projetr209.nekocorp.fr/index.php?page=item-details&id=" . $lastInsertedId;
+                        header("Location: " . $url);
+                        exit();
+                    } else {
+                        // Erreur lors de l'insertion de l'annonce
+                        echo "Erreur lors de l'ajout du véhicule : " . $conn->error;
+                    }
 
-                    // Redirection vers la page de détails du produit
-                    header("Location: " . $url);
-                    exit();
-                } else {
-                    echo "Erreur lors de l'ajout du véhicule : " . $conn->error;
+                    // Fermer le statement
+                    $stmt->close();
                 }
-
+            } else {
+                // L'utilisateur n'existe pas dans la base de données, déconnecter et rediriger vers la page de connexion
+                session_destroy();
+                header('Location: index.php?page=login');
+                exit();
             }
-            ?>
+
+            // Fermer la connexion
+            $conn->close();
+        ?>
+
 
     </div>
 
     <div class="basket-body">
         <form action='' method="post" enctype="multipart/form-data">
             <label for="make">Marque :</label><br>
-            <input type="text" id="make" name="make" required><br><br>
+            <select id="make" name="make" required>
+            <option value="">Sélectionnez une marque</option>
+            <option value="Abarth">Abarth</option>
+            <option value="Alfa Romeo">Alfa Romeo</option>
+            <option value="Aston Martin">Aston Martin</option>
+            <option value="Audi">Audi</option>
+            <option value="Bentley">Bentley</option>
+            <option value="BMW">BMW</option>
+            <option value="Bugatti">Bugatti</option>
+            <option value="Buick">Buick</option>
+            <option value="CAT">CAT</option>
+            <option value="Cadillac">Cadillac</option>
+            <option value="Chevrolet">Chevrolet</option>
+            <option value="Chrysler">Chrysler</option>
+            <option value="Citroën">Citroën</option>
+            <option value="Dacia">Dacia</option>
+            <option value="Dodge">Dodge</option>
+            <option value="Ferrari">Ferrari</option>
+            <option value="Fiat">Fiat</option>
+            <option value="Ford">Ford</option>
+            <option value="Genesis">Genesis</option>
+            <option value="GMC">GMC</option>
+            <option value="Honda">Honda</option>
+            <option value="Hyundai">Hyundai</option>
+            <option value="Infiniti">Infiniti</option>
+            <option value="Jaguar">Jaguar</option>
+            <option value="Jeep">Jeep</option>
+            <option value="Kia">Kia</option>
+            <option value="Lamborghini">Lamborghini</option>
+            <option value="Land Rover">Land Rover</option>
+            <option value="Lexus">Lexus</option>
+            <option value="Lincoln">Lincoln</option>
+            <option value="Lotus">Lotus</option>
+            <option value="Maserati">Maserati</option>
+            <option value="Mazda">Mazda</option>
+            <option value="McLaren">McLaren</option>
+            <option value="Mercedes-Benz">Mercedes-Benz</option>
+            <option value="Mini">MINI</option>
+            <option value="Mitsubishi">Mitsubishi</option>
+            <option value="Nissan">Nissan</option>
+            <option value="Opel">Opel</option>
+            <option value="Peugeot">Peugeot</option>
+            <option value="Porsche">Porsche</option>
+            <option value="Ram">Ram</option>
+            <option value="Renault">Renault</option>
+            <option value="Rolls-Royce">Rolls-Royce</option>
+            <option value="Saab">Saab</option>
+            <option value="Seat">Seat</option>
+            <option value="Škoda">Škoda</option>
+            <option value="Smart">Smart</option>
+            <option value="Subaru">Subaru</option>
+            <option value="Suzuki">Suzuki</option>
+            <option value="Tesla">Tesla</option>
+            <option value="Toyota">Toyota</option>
+            <option value="Volkswagen">Volkswagen</option>
+            <option value="Volvo">Volvo</option>
+            <option value="Custom">Custom</option>
+            </select><br><br>
+
 
             <label for="model">Modèle :</label><br>
             <input type="text" id="model" name="model" required><br><br>
@@ -101,6 +188,7 @@
 
             <label for="condition">Condition :</label><br>
             <select id="condition" name="condition" required>
+                <option value="">Sélectionnez l'état du véhicule</option>
                 <option value="1">Très mauvais état</option>
                 <option value="2">Mauvais état</option>
                 <option value="3">État moyen</option>
@@ -110,6 +198,7 @@
 
             <label for="energy">Energie :</label><br>
             <select id="energy" name="energy" required>
+            <option value="">Sélectionnez l'énergie de votre véhicule</option>
                 <option value="1">Diesel</option>
                 <option value="2">Essence</option>
                 <option value="3">Electrique</option>
@@ -123,7 +212,7 @@
             <label for="year">Année de fabrication :</label><br>
             <input type="number" id="year" name="year" required><br><br>
 
-            <label for="price">Prix (en euros) :</label><br>
+            <label for="price">Prix :</label><br>
             <input type="number" id="price" name="price" required> €<br><br>
 
             <label for="main_image">Photo principale :</label><br>

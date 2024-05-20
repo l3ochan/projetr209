@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AutoIUT - Panier</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style_basket.css">
 </head>
 <body id="basket">
     <h1 class="page-title">Panier</h1>
@@ -15,12 +15,56 @@
         include 'config/db_connector.php';
         include 'basket-function.php';
 
-        // Vérifie et crée le panier si nécessaire
-        if (!isset($_SESSION['basket_id'])) {
-            $basketID = createBasket();
-            $_SESSION['basket_id'] = $basketID;
+        // Vérifie si l'utilisateur est connecté
+        if (isset($_SESSION['token'])) {
+            // Récupère l'ID de l'utilisateur connecté
+            $token = $_SESSION['token'];
+            $query = "SELECT id FROM users WHERE token = ?";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param('s', $token);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                $userID = $row['id'];
+                
+                // Vérifie si l'utilisateur a déjà un panier
+                $query = "SELECT id FROM basket WHERE ownerID = ?";
+                $stmt = $conn->prepare($query);
+                $stmt->bind_param('i', $userID);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                
+                if ($result->num_rows > 0) {
+                    // Utilisateur a déjà un panier, récupère son ID de panier
+                    $row = $result->fetch_assoc();
+                    $basketID = $row['id'];
+                } else {
+                    // Crée un nouveau panier pour l'utilisateur
+                    $query = "INSERT INTO basket (ownerID) VALUES (?)";
+                    $stmt = $conn->prepare($query);
+                    $stmt->bind_param('i', $userID);
+                    $stmt->execute();
+                    $basketID = $stmt->insert_id;
+                }
+            } else {
+                // Si l'utilisateur n'est pas trouvé dans la base de données, utilise la session pour gérer le panier
+                if (!isset($_SESSION['basket_id'])) {
+                    $basketID = createBasket();
+                    $_SESSION['basket_id'] = $basketID;
+                } else {
+                    $basketID = $_SESSION['basket_id'];
+                }
+            }
         } else {
-            $basketID = $_SESSION['basket_id'];
+            // Si l'utilisateur n'est pas connecté, utilise la session pour gérer le panier
+            if (!isset($_SESSION['basket_id'])) {
+                $basketID = createBasket();
+                $_SESSION['basket_id'] = $basketID;
+            } else {
+                $basketID = $_SESSION['basket_id'];
+            }
         }
 
         // Affichage du contenu du panier
@@ -61,7 +105,8 @@
             echo "<p>Votre panier est vide</p>";
         } else {
             echo "<table>";
-            echo "<tr><th>Libellé</th><th>Prix Unitaire</th><th>Action</th></tr>";
+            echo "<tr><th>Libellé</th><th>Prix</th><th>Action</th></tr>";
+            $totalPrice = 0; // Initialise le total à zéro
             foreach ($contentArray as $itemID) {
                 $query = "SELECT * FROM items WHERE id = $itemID";
                 $result = mysqli_query($conn, $query);
@@ -72,16 +117,19 @@
                     echo "<tr>";
                     echo "<td>" . htmlspecialchars($row['make'] . " " . $row['model']) . "</td>";
                     echo "<td>" . htmlspecialchars($row['price']) . "€</td>";
-                    echo "<td><a href='basket.php?action=suppression&itemID=" . $itemID . "'>Supprimer</a></td>";
+                    echo "<td><a href='basket.php?action=suppression&itemID=" . $itemID . "'><img src='assets/imgs/recycle-bin.png' width='15' alt='Supprimer'></a> | <a href='index.php?page=item-details&id=" . $itemID . "'><img src='assets/imgs/details.png' width='15' alt='Détails'></a></td>";
                     echo "</tr>";
+                    $totalPrice += $row['price']; // Ajoute le prix de l'article au total
                 }
             }
-            echo "<tr><td colspan='3'>Total : " . totalPrice() . "€</td></tr>";
+            echo "<tr><td colspan='3'>Total : " . $totalPrice . "€</td></tr>";
             echo "</table>";
 
             // Bouton pour valider la commande
             echo "<form method='post' action='valider_commande.php'>";
+            echo "<div class='submit'>";
             echo "<input type='submit' value='Valider la commande'>";
+            echo "</div>";
             echo "</form>";
         }
 

@@ -1,0 +1,76 @@
+nav.menu .link-container img.home-picture {
+    width: 200px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #000000;
+    padding: 0 20px; /* Ajoute un peu de padding pour ne pas coller les éléments aux bords */
+}
+
+.menu .link-container {
+    display: flex;
+    list-style: none; /* Enlève les puces des listes */
+    padding: 0; /* Enlève le padding par défaut des listes */
+    margin: 0; /* Enlève la marge par défaut des listes */
+}
+
+.menu .link-container li {
+    padding: 0 10px; /* Espacement entre les liens */
+}
+
+nav.menu a {
+    text-decoration: none;
+    color: #ffffff;
+    background: #000000;
+    height: 50px;
+    line-height: 50px;
+    padding: 0 20px;
+    font-family: neuropol;
+    font-size: 20px;
+    transition: .5s;
+    display: flex;
+    align-items: center;
+}
+
+nav.menu a:hover {
+    background: #EF7A2D;
+
+}
+
+.menu .account {
+    display: flex;
+    align-items: center;
+}
+.user-dropdown {
+    color: #ffffff;
+    font-family: 'neuropol';
+    font-size: 20px;
+    position: relative; /* Position relative pour permettre le positionnement absolu de .dropdown-content */
+    display: inline-block; /* Afficher en ligne avec les autres éléments */
+    padding: 0 20px;
+}
+
+.dropdown-content {
+    display: none; /* Par défaut, le contenu du dropdown est caché */
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 220px; /* Augmenter la largeur minimale pour s'assurer que le texte "Se déconnecter" est bien contenu */
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    z-index: 1;
+    top: 170%; /* Positionner le dropdown juste en dessous de l'élément parent */
+    right : -20px ; /* Aligner le dropdown avec le bord gauche de l'élément parent */
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 0px; /* Ajuster le padding pour assurer suffisamment d'espace autour du texte */
+    text-decoration: none;
+    display: block; /* Afficher les liens en bloc pour qu'ils occupent toute la largeur du dropdown */
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}

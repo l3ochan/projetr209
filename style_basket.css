@@ -1,0 +1,71 @@
+body {
+    font-family: 'neuropol', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+
+.basket-body {
+    margin: 20px auto;
+    max-width: 800px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+.icon {
+    width: 20px;
+    height: 20px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th, table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+table th {
+    background-color: #f4f4f4;
+}
+
+.item-info {
+    color: #000;
+    text-decoration: none;
+}
+
+.item-info:hover {
+    text-decoration: underline;
+}
+
+.total-section {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.total-section .total {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.submit button {
+    width: 100%;
+    padding: 10px;
+    font-family: neuropol;
+    background-color: #000000;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit button:hover {
+    background-color: #EF7A2D; 
+}  

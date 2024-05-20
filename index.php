@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="style_homepage.css">
+    <link rel="stylesheet" href="style_sidewide.css">
     <script src="script.js"></script>
     <link rel="icon" href="/assets/imgs/favicon.png" type="image/png">
 </head>
@@ -60,9 +60,10 @@
     <?php elseif ($page === 'basket') : ?>
         <?php include('basket.php'); ?>
     <?php elseif ($page === 'about-us') : ?>
-        <p class="about-us">Corps de texte du a propos</p>
-    <?php elseif ($page === 'login') : ?>
-        <?php include('sessions/login.php'); ?>    
+        
+        <?php include('aboutus.php'); ?>
+        <?php elseif ($page === 'login') : ?>
+        <?php include('sessions/login.php'); ?>  
     <?php elseif ($page === 'signin') : ?>
         <?php include('sessions/signin.php'); ?>  
     <?php elseif ($page === 'add-item') : ?>
@@ -71,7 +72,9 @@
         <?php include('add-item.php'); ?>  
     <?php else : ?>
         <div class="error404">
+            <link rel="stylesheet" href="style404.css">
             <img src="/assets/imgs/404.png" class="404 error picture" alt="404 error picture">
+            <?php header("HTTP/1.0 404 Not Found");?>
             <h1>404 - Page Not Found</h1><br>
         </div>
         <?php endif; ?>
