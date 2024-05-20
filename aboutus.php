@@ -3,23 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AutoIUT - Accueil</title>
-    <link rel="stylesheet" href="style_homepage.css">
+    <title>AutoIUT - A propos</title>
+    <link rel="stylesheet" href="style_aboutus.css">
 </head>
     <body>
-        <p class="welcome">Bienvenue sur Auto Télécom, le site de revente de voiture de l'IUT de Mont de Marsan.<br>
-        Sur ce site, vous retrouverez toutes nos meilleure occasions disponibles à la vente, obtenues de façon bien evidamment légale 🙂.</p>
-        </header>
-        <p class="disclaimer-project">DISCLAIMER : Ce site fait partie d'un projet scolaire de fin d'année, aucun des articles en "vente" ne le sont réellement.<br>
-        Ce message s'adresse au malins qui mettent des annonces innapropriées ou qui tentent de pirater nos systèmes, ce n'est pas parce que c'est le site du camarade de classe que la loi ne s'y applique pas, une tentative de piratage reste une tentative de piratage. Vous êtes prévenus.
-        </p>   
-        <div class="latest-vehicle">
-        <h2>Dernier véhicule ajouté :</h2>
+        <p class="about-us">Grossomodo, ca c'est passé comme ca, un jour on débarque en cours et notre prof nous a annoncé qu'on devait faire un site avec du php et du sql, n'ayant jamais utilisé ces outils je me suis mis en tête de faire un site pour vendre les voitures de tout l'établissement. 🙂<br>
+        Voici la voiture du prof qui est à l'origine de ce magnifique site très moche. Vous pouvez l'acheter mais vous n'aurez probablement jamais son volant entre vos mains :/</p>
         <?php
         include 'config/db_connector.php';
 
         // Requête pour récupérer les informations du dernier véhicule ajouté
-        $query = "SELECT * FROM items ORDER BY id DESC LIMIT 1";
+        $query = "SELECT * FROM items WHERE id = '31'";
         $result = mysqli_query($conn, $query);
 
         if (mysqli_num_rows($result) > 0) {
@@ -70,6 +64,7 @@
 
         mysqli_close($conn);
         ?>
-    </div>
+         <p class="about-us">Pour vous Mr Munier qui lisez ceci, on a brainstormé longtemps pour trouver quelquechose  de dynamique à mettre sur notre page "A propos" Je pense que c'est pas trop mal.</p>
+        
     </body>
 </html>

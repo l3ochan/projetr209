@@ -1,0 +1,95 @@
+div.item-details {
+    color: #000000;
+    font-size: 20px;
+    font-family: neuropol;
+    margin: 10px;
+    opacity: 0; /* Commence complètement transparent */
+    animation: fadeIn 0.5s ease-in forwards;
+}
+/* Styles globaux de la page */
+#vehicle-detail-page .vehicle-details-container {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    padding: 20px;
+    color: #333;
+}
+
+#vehicle-detail-page .vehicle-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Styles pour l'image principale du véhicule */
+#vehicle-detail-page .main-image {
+    max-width: 100%;
+    max-height: 600px;
+    display: block;
+    border-radius: 8px;
+}
+
+/* Boutons de navigation */
+#vehicle-detail-page .navigation-button {
+    cursor: pointer;
+    font-size: 24px;
+    color: #EF7A2D;
+    background: none;
+    border: none;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000; /* Assure que les boutons sont au-dessus des autres éléments */
+}
+
+#vehicle-detail-page .next {
+    right: 30px;
+}
+
+#vehicle-detail-page .prev {
+    left: 30px;
+}
+
+/* Styles pour les détails du véhicule sous l'image principale */
+#vehicle-detail-page .vehicle-details {
+    margin-top: 20px;
+}
+
+#vehicle-detail-page .make-model, #vehicle-detail-page .price, #vehicle-detail-page .date-mileage {
+    margin: 5px 0;
+}
+
+/* Styles pour la galerie de miniatures */
+#vehicle-detail-page .thumbnails {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+#vehicle-detail-page .thumbnail {
+    width: 100px;
+    height: 75px; /* Hauteur fixe pour toutes les miniatures */
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.3s, transform 0.3s;
+    object-fit: cover; /* Préserve les proportions de l'image */
+    margin-right: 10px; /* Espacement entre les miniatures */
+    border-radius: 4px; /* Arrondit les coins des miniatures */
+}
+
+#vehicle-detail-page .thumbnail:hover, #vehicle-detail-page .thumbnail.active {
+    transform: scale(1.1); /* Effet de zoom pour l'image active et au survol */
+    opacity: 1;
+}
+#vehicle-detail-page .energy {
+    color: #000000;
+    font-size: 20px;
+    margin: 10px;
+    opacity: 0; /* Commence complètement transparent */
+    animation: fadeIn 0.5s ease-in forwards;
+}

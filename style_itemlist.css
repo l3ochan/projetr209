@@ -1,0 +1,55 @@
+.vehicle-container {
+    margin: 10px;
+    padding: 10px;
+    width: calc(15% - 20px); 
+    margin-right: 20px; 
+    float: left;
+    margin-bottom: 20px;
+    border-radius: 12px; 
+    overflow: hidden;
+    font-family: 'neuropol'; 
+    transition: transform 0.3s ease;
+    opacity: 0; 
+    animation: fadeIn 0.5s ease-in forwards; 
+}
+.vehicle-container:hover {
+    transform: scale(1.05); /* Grossit de 10% lorsque survolé */
+}
+.vehicle {
+    border: none; 
+    padding: 20px; 
+    background-color: #e7e7e7; 
+    border-radius: 12px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+.vehicle img {
+    max-width: 100%; 
+    border-radius: 12px; 
+}
+
+.make-model {
+    font-size: 20px;
+    font-weight: bold;
+    
+    color: #000000; 
+}
+.price {
+    font-size: 22px;
+    color: #EF7A2D; 
+     
+}
+.date-mileage {
+    font-size: 14px;
+    color: #2e2e2e; 
+    margin-top: 8px; 
+}
+.energy {
+    font-size: 13px;
+    font-weight: bold;
+    color: #000000; 
+}
+
+a.vehicle-link {
+    text-decoration: none;
+}
