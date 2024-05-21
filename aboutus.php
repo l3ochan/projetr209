@@ -69,7 +69,7 @@
         ?>
          <p class="about-us">Pour vous Mr Munier qui lisez ceci, on a brainstormé longtemps pour trouver quelquechose  de dynamique à mettre sur notre page "A propos" Je pense que c'est pas trop mal.</p>
          <div style="text-align: center; font-size: 10px; ">
-         <p>Droits d'auteur © 2024 Nekocorp. Tous les droits sont réservés, sauf indication contraire. Ce site est distribué sous la licence Apache 2.0, à l'exception des éléments visuels tels que les logos ou photos, qui restent la propriété exclusive de Nekocorp. Consultez le fichier LICENSE pour plus de détails.</p>
+         <p>Droits d'auteur © 2024 Nekocorp. Tous les droits sont réservés, sauf indication contraire. Ce site est distribué sous la licence Apache 2.0, à l'exception des éléments visuels tels que les logos ou photos, qui restent la propriété exclusive de Nekocorp. Consultez le fichier <a href="https://projetr209.nekocorp.fr/LICENSE">LICENSE</a> pour plus de détails.</p>
          <img src="assets/imgs/logo round.png" alt="Logo nekocorp" style="height: 100px;">
          </div>
 
