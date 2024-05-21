@@ -44,7 +44,7 @@ if ($result->num_rows == 1) {
     <meta charset="utf-8">
     
     <link rel="stylesheet" href="style_administration.css">
-    <link rel="stylesheet" href="style_sitewide.css">
+    <link rel="stylesheet" href="style_sidewide">
     <link rel="icon" href="../assets/imgs/favicon.png" type="image/png">
 </head>
 <body class="admin-menu">
@@ -56,7 +56,7 @@ if ($result->num_rows == 1) {
         $page = isset($_GET['page']) ? $_GET['page'] : 'accueil';
 
         if ($page === 'home') :
-            include('homepage.php'); 
+            include('homepage-admin.php'); 
         elseif ($page === 'item-list-admin') :
             include('item-list-admin.php');
         elseif ($page === 'user-list-admin') : 

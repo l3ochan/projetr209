@@ -9,7 +9,6 @@
     <body>
         <p class="welcome">Bienvenue sur Auto Télécom, le site de revente de voiture de l'IUT de Mont de Marsan.<br>
         Sur ce site, vous retrouverez toutes nos meilleure occasions disponibles à la vente, obtenues de façon bien evidamment légale 🙂.</p>
-        </header>
         <p class="disclaimer-project">DISCLAIMER : Ce site fait partie d'un projet scolaire de fin d'année, aucun des articles en "vente" ne le sont réellement.<br>
         Ce message s'adresse au malins qui mettent des annonces innapropriées ou qui tentent de pirater nos systèmes, ce n'est pas parce que c'est le site du camarade de classe que la loi ne s'y applique pas, une tentative de piratage reste une tentative de piratage. Vous êtes prévenus.
         </p>   
