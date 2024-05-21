@@ -14,8 +14,8 @@
 
             <input type="hidden" name="page" value="item-list">
 
-            <label for="make">Marque :</label><br>
-            <select id="make" name="make">
+            <label for="make">Marque :</label>
+        <select id="make" name="make">
             <option value="">Sélectionnez une marque</option>
             <option value="Abarth">Abarth</option>
             <option value="Alfa Romeo">Alfa Romeo</option>
@@ -72,36 +72,41 @@
             <option value="Volkswagen">Volkswagen</option>
             <option value="Volvo">Volvo</option>
             <option value="Custom">Custom</option>
-            </select><br><br>
-            
-            <label for="energy">Énergie :</label><br>
-            <select id="energy" name="energy">
-                <option value="">Sélectionnez l'énergie</option>
-                <option value="1">Diesel</option>
-                <option value="2">Essence</option>
-                <option value="3">Electrique</option>
-                <option value="4">Gaz</option>
-                <option value="5">Ethanol</option>
-            </select><br><br>
-            
-            <label for="order">Trier par état :</label><br>
-            <select id="order" name="order">
-                <option value="">Sélectionnez un ordre</option>
-                <option value="asc">Croissant (meilleur d'abord)</option>
-                <option value="desc">Décroissant (moins bon d'abord)</option>
-            </select><br><br>
+        </select>
+        
+        <label for="energy">Énergie :</label>
+        <select id="energy" name="energy">
+            <option value="">Sélectionnez l'énergie</option>
+            <option value="1">Diesel</option>
+            <option value="2">Essence</option>
+            <option value="3">Electrique</option>
+            <option value="4">Gaz</option>
+            <option value="5">Ethanol</option>
+        </select>
+        
+        <label for="order">Etat :</label>
+        <select id="order" name="order">
+            <option value="">Sélectionnez un ordre</option>
+            <option value="asc">Croissant (meilleur d'abord)</option>
+            <option value="desc">Décroissant (moins bon d'abord)</option>
+        </select>
 
-            <label for="price">Trier par prix :</label><br>
-            <select id="price" name="price">
-                <option value="">Sélectionnez un ordre</option>
-                <option value="asc">Croissant (moins cher d'abord)</option>
-                <option value="desc">Décroissant (plus cher d'abord)</option>
-            </select><br><br>
-            
-            <input type="submit" value="Filtrer">
-        </form>
+        <label for="price">Trier par prix :</label>
+        <select id="price" name="price">
+            <option value="">Sélectionnez un ordre</option>
+            <option value="asc">Croissant (moins cher d'abord)</option>
+            <option value="desc">Décroissant (plus cher d'abord)</option>
+        </select>
+        <label for="time">Trier par date d'ajout :</label>
+        <select id="time" name="time">
+            <option value="">Sélectionnez un ordre</option>
+            <option value="asc">Croissant (Plus ancien d'abord)</option>
+            <option value="desc">Décroissant (Plus récent d'abord)</option>
+        </select>
+        
+        <input type="submit" value="Filtrer">
+    </form>
     </div>
-    <!-- Liste des véhicules -->
     <div class="container">
         <?php 
             include 'config/db_connector.php';
@@ -127,6 +132,10 @@
             if (isset($_GET['price']) && !empty($_GET['price'])) {
                 $order = $_GET['price'];
                 $query .= " ORDER BY price " . ($order == 'asc' ? 'ASC' : 'DESC');
+            }
+            if (isset($_GET['time']) && !empty($_GET['time'])) {
+                $order = $_GET['id'];
+                $query .= " ORDER BY id " . ($order == 'asc' ? 'ASC' : 'DESC');
             }
 
             $result = mysqli_query($conn, $query);
@@ -181,5 +190,25 @@
             mysqli_close($conn);
         ?>
     </div>
+    <script>
+        // Fonction pour extraire les paramètres de l'URL et les sélectionner dans les menus déroulants
+        function selectFiltersFromURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const make = urlParams.get('make');
+            const energy = urlParams.get('energy');
+            const order = urlParams.get('order');
+            const price = urlParams.get('price');
+            const time = urlParams.get('time');
+
+            document.getElementById('make').value = make || '';
+            document.getElementById('energy').value = energy || '';
+            document.getElementById('order').value = order || '';
+            document.getElementById('price').value = price || '';
+            document.getElementById('time').value = time || '';
+        }
+
+        // Appeler la fonction au chargement de la page
+        window.addEventListener('DOMContentLoaded', selectFiltersFromURL);
+    </script>
 </body>
 </html>

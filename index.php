@@ -11,11 +11,6 @@
     <?php
     include 'navbar.php';
     include 'config/db_connector.php';
-    
-      
-
-    
-
     // Récupérer le paramètre "page" de l'URL
     $page = isset($_GET['page']) ? $_GET['page'] : 'accueil';
     // Inclure la barre de navigation
@@ -68,8 +63,12 @@
         <?php include('sessions/signin.php'); ?>  
     <?php elseif ($page === 'add-item') : ?>
         <?php include('add-item.php'); ?>    
-    <?php elseif ($page === 'administration') : ?>
-        <?php include('add-item.php'); ?>  
+    <?php elseif ($page === 'myvehicles') : ?>
+        <?php include('user_personal/item-list-sorted.php'); ?>  
+    <?php elseif ($page === 'edit-item') : ?>
+        <?php include('user_personal/edit-item.php'); ?>  
+    <?php elseif ($page === 'edit-profile') : ?>
+        <?php include('user_personal/edit-profile.php'); ?>  
     <?php else : ?>
         <div class="error404">
             <link rel="stylesheet" href="style404.css">

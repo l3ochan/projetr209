@@ -14,7 +14,7 @@
         Ce message s'adresse au malins qui mettent des annonces innapropriées ou qui tentent de pirater nos systèmes, ce n'est pas parce que c'est le site du camarade de classe que la loi ne s'y applique pas, une tentative de piratage reste une tentative de piratage. Vous êtes prévenus.
         </p>   
         <div class="latest-vehicle">
-        <h2>Dernier véhicule ajouté :</h2>
+        <h2 class ="page-title">Dernier véhicule ajouté :</h2>
         <?php
         include 'config/db_connector.php';
 

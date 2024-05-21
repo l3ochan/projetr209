@@ -7,13 +7,15 @@
     <link rel="stylesheet" href="style_aboutus.css">
 </head>
     <body>
+        <h1 class="page-title">A propos</h1>
+        <div class="separator"></div>
         <p class="about-us">Grossomodo, ca c'est passé comme ca, un jour on débarque en cours et notre prof nous a annoncé qu'on devait faire un site avec du php et du sql, n'ayant jamais utilisé ces outils je me suis mis en tête de faire un site pour vendre les voitures de tout l'établissement. 🙂<br>
         Voici la voiture du prof qui est à l'origine de ce magnifique site très moche. Vous pouvez l'acheter mais vous n'aurez probablement jamais son volant entre vos mains :/</p>
         <?php
         include 'config/db_connector.php';
 
         // Requête pour récupérer les informations du dernier véhicule ajouté
-        $query = "SELECT * FROM items WHERE id = '31'";
+        $query = "SELECT * FROM items WHERE id = '32'";
         $result = mysqli_query($conn, $query);
 
         if (mysqli_num_rows($result) > 0) {
@@ -50,6 +52,7 @@
             }
             echo "</div>";
             // Bouton d'ajout au panier avec un formulaire
+            echo "<div class=separator></div>";
             echo "<form method='post' action='https://projetr209.nekocorp.fr/index.php?page=basket'>";
             echo "<input type='hidden' name='itemID' value='" . $row['id'] . "'>";
             echo "<input type='submit' name='addItem' value='Ajouter au panier'>";

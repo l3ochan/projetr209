@@ -1,3 +1,62 @@
+/* Style pour la section des filtres */
+.filters {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.filters label {
+    margin-right: 10px;
+    font-weight: bold;
+    font-family: neuropol;
+}
+
+.filters select {
+    margin-right: 20px;
+    padding: 5px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+}
+
+.filters input[type="submit"] {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    background-color: #000000;
+    color: white;
+    cursor: pointer;
+    margin-left: auto;
+    font-family: neuropol;
+    transition: background-color 0.3s;
+}
+
+.filters input[type="submit"]:hover {
+    background-color: #EF7A2D;
+}
+
+/* Styles pour les boutons dans la section principale */
+.container input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 3px;
+    font-family: neuropol;
+    background-color: #000000;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.container input[type="submit"]:hover {
+    background-color: #EF7A2D; 
+}
+
 .vehicle-container {
     margin: 10px;
     padding: 10px;
@@ -53,3 +112,4 @@
 a.vehicle-link {
     text-decoration: none;
 }
+

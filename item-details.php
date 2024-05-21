@@ -60,7 +60,8 @@
                     break;
             }
             echo "<br>";
-            echo "<div class='energy'>";
+            echo "</div>";
+            echo "<div class='energy'>Energie: ";
             $energy = intval($row['energy']);
             switch ($energy) {
                 case 1:
@@ -83,18 +84,6 @@
                     break;
             }
             echo "</div>";
-
-            // Récupérer le nom de l'utilisateur propriétaire de l'annonce
-            $ownerID = $row['ownerID'];
-            $ownerQuery = "SELECT fname FROM users WHERE id = $ownerID";
-            $ownerResult = mysqli_query($conn, $ownerQuery);
-            if ($ownerResult && mysqli_num_rows($ownerResult) > 0) {
-                $ownerData = mysqli_fetch_assoc($ownerResult);
-                echo "<div class='owner'>Annonce créée par : " . $ownerData['fname'] . "</div>";
-            } else {
-                echo "<div class='owner'>Annonce créée par : Utilisateur inconnu</div>";
-            }
-
             echo "</div>";
             echo "<form method='post' action='https://projetr209.nekocorp.fr/index.php?page=basket'>";
             echo "<input type='hidden' name='itemID' value='" . $row['id'] . "'>";

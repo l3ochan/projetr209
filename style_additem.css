@@ -7,7 +7,16 @@ body {
 }
 
 
-.basket-body {
+
+
+img {
+    max-height: 100px;
+} 
+form {
+    max-width: 400px;
+    margin: 0 auto;
+    display: flex; /* Utiliser Flexbox */
+    flex-wrap: wrap; /* Permettre le passage à la ligne */
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.1);
@@ -16,15 +25,7 @@ body {
     max-width: 600px;
 }
 
-form {
-    max-width: 400px;
-    margin: 0 auto;
-    display: flex; /* Utiliser Flexbox */
-    flex-wrap: wrap; /* Permettre le passage à la ligne */
-}
-
 form textarea {
-    width: 1000px
     padding: 5px;
     margin-bottom: 10px;
     height: 100px; /* Hauteur fixe pour le champ de description */
@@ -63,12 +64,14 @@ input:focus, textarea:focus {
 
 form input[type="submit"] {
     width: 100%;
+    margin-top: 10px;
     padding: 10px;
     font-family: neuropol;
     background-color: #000000;
     border: none;
     color: #fff;
     cursor: pointer;
+    border-radius: 3px;
     transition: background-color 0.3s;
 }
 
@@ -76,7 +79,29 @@ form input[type="submit"]:hover {
     background-color: #EF7A2D; /* Nouvelle couleur de fond au survol */
 }
 
+h2 {
+    margin-top: 30px;
+}
+.picture {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
 
+.picture img {
+    margin: 5px;
+    max-width: 200px;
+    max-height: 200px;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-container input[type="checkbox"] {
+    margin-right: 5px;
+}
 /* Style pour les messages d'erreur */
 .error-message {
     color: #ff0000;

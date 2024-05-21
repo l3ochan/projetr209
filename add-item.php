@@ -117,7 +117,7 @@
 
     </div>
 
-    <div class="basket-body">
+    <div class="additem-body">
         <form action='' method="post" enctype="multipart/form-data">
             <label for="make">Marque :</label><br>
             <select id="make" name="make" required>
@@ -157,7 +157,7 @@
             <option value="Mazda">Mazda</option>
             <option value="McLaren">McLaren</option>
             <option value="Mercedes-Benz">Mercedes-Benz</option>
-            <option value="Mini">MINI</option>
+            <option value="MINI">MINI</option>
             <option value="Mitsubishi">Mitsubishi</option>
             <option value="Nissan">Nissan</option>
             <option value="Opel">Opel</option>
@@ -216,7 +216,7 @@
             <input type="number" id="price" name="price" required> €<br><br>
 
             <label for="main_image">Photo principale :</label><br>
-            <input type="file" id="main_image" name="main_image" accept="image/png" required><br><br>
+            <input type="file" id="main_image" name="main_image" accept="image/png"><br><br>
 
             <label for="other_images">Autres images :</label><br>
             <input type="file" id="other_images" name="other_images[]" multiple accept="image/png"><br><br>

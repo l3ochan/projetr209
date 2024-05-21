@@ -87,28 +87,66 @@ function totalPrice() {
 function delItemFromBasket($itemID) {
     global $conn;
 
-    if (isset($_SESSION['basket_id'])) {
+    if (isset($_SESSION['token'])) {
+        $token = $_SESSION['token'];
+
+        // Récupérer l'ID de l'utilisateur à partir du token
+        $query = "SELECT id FROM users WHERE token = ?";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param('s', $token);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows == 1) {
+            $row = $result->fetch_assoc();
+            $userID = $row['id'];
+
+            // Récupérer le panier de l'utilisateur
+            $query = "SELECT id, content FROM basket WHERE ownerID = ?";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param('i', $userID);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            if ($result->num_rows == 1) {
+                $row = $result->fetch_assoc();
+                $basketID = $row['id'];
+                $content = $row['content'];
+            } else {
+                echo "Erreur : Panier non trouvé pour cet utilisateur.";
+                return;
+            }
+        } else {
+            echo "Erreur : Utilisateur non trouvé.";
+            return;
+        }
+    } elseif (isset($_SESSION['basket_id'])) {
+        // Utiliser le basket_id stocké dans la session
         $basketID = $_SESSION['basket_id'];
 
-        // Récupère le contenu actuel du panier
+        // Récupérer le contenu actuel du panier
         $query = "SELECT content FROM basket WHERE id = $basketID";
         $result = mysqli_query($conn, $query);
         $row = mysqli_fetch_assoc($result);
-
-        // Supprime l'itemID du contenu du panier
         $content = $row['content'];
-        $contentArray = explode(',', $content);
-        if (($key = array_search($itemID, $contentArray)) !== false) {
-            unset($contentArray[$key]);
-        }
-        $newContent = implode(',', $contentArray);
-
-        // Met à jour le panier avec le nouveau contenu
-        $query = "UPDATE basket SET content = '$newContent' WHERE id = $basketID";
-        mysqli_query($conn, $query);
     } else {
-        echo "Erreur : Panier non trouvé.";
+        echo "Erreur : Aucun panier n'est associé à cet utilisateur.";
+        return;
     }
+
+    // Supprimer l'itemID du contenu du panier
+    $contentArray = explode(',', $content);
+    if (($key = array_search($itemID, $contentArray)) !== false) {
+        unset($contentArray[$key]);
+    }
+    $newContent = implode(',', $contentArray);
+
+    // Mettre à jour le panier avec le nouveau contenu
+    $query = "UPDATE basket SET content = ? WHERE id = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param('si', $newContent, $basketID);
+    $stmt->execute();
 }
+
 
 ?>

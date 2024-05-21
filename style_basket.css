@@ -1,11 +1,32 @@
 body {
-    font-family: 'neuropol', sans-serif;
+    font-family: 'neuropol';
     background-color: #f4f4f4;
     margin: 0;
     padding: 0;
 }
 
+.submit {
+    display: flex;
+    justify-content: center;
+}
 
+.submit input[type="submit"] {
+    width: 50%; /* Ajustez la largeur selon vos besoins */
+    padding: 10px;
+    border-radius: 3px;
+    font-family: neuropol;
+    background-color: #000000;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: block;
+    margin: 0 auto; /* Centrer horizontalement */
+}
+
+.submit input[type="submit"]:hover {
+    background-color: #EF7A2D; 
+}
 .basket-body {
     margin: 20px auto;
     max-width: 800px;
@@ -55,17 +76,3 @@ table th {
     font-weight: bold;
 }
 
-.submit button {
-    width: 100%;
-    padding: 10px;
-    font-family: neuropol;
-    background-color: #000000;
-    border: none;
-    color: #fff;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.submit button:hover {
-    background-color: #EF7A2D; 
-}  
