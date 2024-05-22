@@ -112,30 +112,35 @@
             include 'config/db_connector.php';
 
             // Construction de la requête en fonction des filtres
-            $query = "SELECT * FROM items";
+            $query = "SELECT * FROM items WHERE 1=1"; // Ajout d'une condition TRUE pour simplifier la construction de la requête
+
             if (isset($_GET['make']) && !empty($_GET['make'])) {
                 $make = $_GET['make'];
-                $query .= " WHERE make = '$make'";
+                $query .= " AND make = '$make'";
             }
             if (isset($_GET['energy']) && !empty($_GET['energy'])) {
                 $energy = $_GET['energy'];
-                if (strpos($query, 'WHERE') === false) {
-                    $query .= " WHERE energy = '$energy'";
-                } else {
-                    $query .= " AND energy = '$energy'";
-                }
+                $query .= " AND energy = '$energy'";
             }
+
+            // Ajout des critères de tri
+            $orderBy = [];
+
             if (isset($_GET['order']) && !empty($_GET['order'])) {
-                $order = $_GET['order'];
-                $query .= " ORDER BY `condition` " . ($order == 'desc' ? 'ASC' : 'DESC');
+                $orderBy[] = "`condition` " . ($_GET['order'] == 'desc' ? 'DESC' : 'ASC');
             }
+
             if (isset($_GET['price']) && !empty($_GET['price'])) {
-                $order = $_GET['price'];
-                $query .= " ORDER BY price " . ($order == 'asc' ? 'ASC' : 'DESC');
+                $orderBy[] = "price " . ($_GET['price'] == 'desc' ? 'DESC' : 'ASC');
             }
+
             if (isset($_GET['time']) && !empty($_GET['time'])) {
-                $order = $_GET['id'];
-                $query .= " ORDER BY id " . ($order == 'asc' ? 'ASC' : 'DESC');
+                $orderBy[] = "id " . ($_GET['time'] == 'desc' ? 'DESC' : 'ASC');
+            }
+
+            // Ajouter les critères de tri à la requête SQL
+            if (!empty($orderBy)) {
+                $query .= " ORDER BY " . implode(', ', $orderBy);
             }
 
             $result = mysqli_query($conn, $query);

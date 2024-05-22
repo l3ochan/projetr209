@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'neuropol';
-    src: url('/assets/polices/neuropol.woff2') format('woff2'), /* On prend la police de l'IUT mdr */
+    src: url('../assets/polices/neuropol.woff2') format('woff2'), /* On prend la police de l'IUT mdr */
 }
 html, body {
     margin: 0;
