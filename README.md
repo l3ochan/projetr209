@@ -1,2 +1,1 @@
-Grossomodo, ca c'est passé comme ca, 
-un jour on débarque en cours et notre prof nous a annoncé qu'on devait faire un site avec du php et du sql, n'ayant jamais utilisé ces outils je me suis mis en tête de faire un site pour vendre les voitures de tout l'établissement. :) 
+Il s'agit d'un projet pour le module R209 de première année de BUT Réseaux & télécommunications. Nous devons créer un site de vente. Nous avons décidé de créer un site de vente ou nous vendons les véhicules de nos profs (car nous annoncer qu'on doit créer un site web un vendredi matin à 8h c'est pas cool) 
